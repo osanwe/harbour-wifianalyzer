@@ -12,24 +12,24 @@ WpaCliHelper::~WpaCliHelper()
 }
 
 
-WpaCliHelper::callWpaCli() {
+void WpaCliHelper::callWpaCli() {
     QProcess process;
 
-    process.start("pkexec wpa_cli scan");
+    process.start("/bin/bash -c \"echo zxywfjmhn | devel-su wpa_cli scan\"");
     if (!process.waitForFinished()) {
+        emit gotScanError();
         return;
     }
     mWifiInfo = process.readAll();
-    printf(mWifiInfo);
 
-    process.start("pkexec wpa_cli scan_results");
+    process.start("/bin/bash -c \"echo zxywfjmhn | devel-su wpa_cli scan_results\"");
     if (!process.waitForFinished()) {
+        emit gotResultError();
         return;
     }
     mWifiInfo = process.readAll();
-    printf(mWifiInfo);
 
-    emit gotWifiInfo();
+    emit calledWpaCli();
 }
 
 QString WpaCliHelper::getWifiInfo() {

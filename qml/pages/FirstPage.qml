@@ -68,6 +68,15 @@ Page {
             }
         }
     }
+
+    Connections {
+        target: wpaCliHelper
+        onCalledWpaCli: console.log(wpaCliHelper.getWifiInfo())
+        onGotScanError: console.log("onGotScanError")
+        onGotResultError: console.log("onGotResultError")
+    }
+
+    Component.onCompleted: wpaCliHelper.callWpaCli()
 }
 
 

@@ -11,13 +11,15 @@ class WpaCliHelper : public QObject
 public:
     explicit WpaCliHelper(QObject *parent = 0);
     virtual ~WpaCliHelper();
-    QString getWifiInfo();
 
 signals:
-    void onCalledWpaCli();
+    void calledWpaCli();
+    void gotScanError();
+    void gotResultError();
 
 public slots:
     void callWpaCli();
+    QString getWifiInfo();
 
 private:
     QString mWifiInfo;
