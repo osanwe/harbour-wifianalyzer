@@ -56,79 +56,133 @@ Page {
     function calculateChannel(frequency) {
         switch (parseInt(frequency, 10)) {
         case 2412:
-            return 1
+            return 0
 
         case 2417:
-            return 2
+            return 1
 
         case 2422:
-            return 3
+            return 2
 
         case 2427:
-            return 4
+            return 3
 
         case 2432:
-            return 5
+            return 4
 
         case 2437:
-            return 6
+            return 5
 
         case 2442:
-            return 7
+            return 6
 
         case 2447:
-            return 8
+            return 7
 
         case 2452:
-            return 9
+            return 8
 
         case 2457:
-            return 10
+            return 9
 
         case 2462:
-            return 11
+            return 10
 
         case 2467:
-            return 12
+            return 11
 
         case 2472:
-            return 13
+            return 12
 
         case 2484:
-            return 14
+            return 13
         }
     }
 
-    // To enable PullDownMenu, place our content in a SilicaFlickable
-    SilicaFlickable {
+    function calculateChannelsPositions(width) {
+        var step = width / 94
+
+        var channels = []
+        channels[0]  = (11 * step)
+        channels[1]  = (16 * step)
+        channels[2]  = (21 * step)
+        channels[3]  = (26 * step)
+        channels[4]  = (31 * step)
+        channels[5]  = (36 * step)
+        channels[6]  = (41 * step)
+        channels[7]  = (46 * step)
+        channels[8]  = (51 * step)
+        channels[9]  = (56 * step)
+        channels[10] = (61 * step)
+        channels[11] = (66 * step)
+        channels[12] = (71 * step)
+        channels[13] = (83 * step)
+
+        return channels
+    }
+
+    function calculateSignalLevelsPositions(height) {
+        var step = height / 8
+
+        var levels = []
+        levels[0] = step + Theme.paddingLarge
+        levels[1] = (2 * step) + Theme.paddingLarge
+        levels[2] = (3 * step) + Theme.paddingLarge
+        levels[3] = (4 * step) + Theme.paddingLarge
+        levels[4] = (5 * step) + Theme.paddingLarge
+        levels[5] = (6 * step) + Theme.paddingLarge
+        levels[6] = (7 * step) + Theme.paddingLarge
+
+        return levels
+    }
+
+    Canvas {
+        id: graph
         anchors.fill: parent
 
-        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Show Page 2")
-                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
+        onPaint: {
+            var width = Screen.width - (4.5 * Theme.paddingLarge)
+            var height = Screen.height - (3 * Theme.paddingLarge)
+
+            var ctx = graph.getContext("2d")
+            ctx.lineWidth = 3
+            ctx.strokeStyle = "gray"
+            ctx.fillStyle = "gray"
+            ctx.font = "12pt sans-serif"
+
+            ctx.beginPath()
+            ctx.moveTo(2.5*Theme.paddingLarge, Theme.paddingLarge)
+            ctx.lineTo(Screen.width-Theme.paddingLarge, Theme.paddingLarge)
+            ctx.lineTo(Screen.width-Theme.paddingLarge, Screen.height-(2*Theme.paddingLarge))
+            ctx.lineTo(2.5*Theme.paddingLarge, Screen.height-(2*Theme.paddingLarge))
+            ctx.closePath()
+            ctx.stroke()
+
+            ctx.lineWidth = 1
+            var currChannel = 1
+            var channels = calculateChannelsPositions(width)
+            for (var channelIndex in channels) {
+                ctx.beginPath()
+                ctx.moveTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Theme.paddingLarge)
+                ctx.lineTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Screen.height-(2*Theme.paddingLarge))
+                ctx.closePath()
+                ctx.stroke()
+
+                ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge), Screen.height-Theme.paddingLarge)
+                currChannel += 1
             }
-        }
 
-        // Tell SilicaFlickable the height of its content.
-        contentHeight: column.height
+            var currLevel = 30
+            var levels = calculateSignalLevelsPositions(height)
+            for (var levelsIndex in levels) {
+                ctx.beginPath()
+                ctx.moveTo(2.5*Theme.paddingLarge, levels[levelsIndex])
+                ctx.lineTo(Screen.width-Theme.paddingLarge, levels[levelsIndex])
+                ctx.closePath()
+                ctx.stroke()
 
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
-        Column {
-            id: column
-
-            width: page.width
-            spacing: Theme.paddingLarge
-            PageHeader {
-                title: qsTr("UI Template")
-            }
-            Label {
-                x: Theme.paddingLarge
-                text: qsTr("Hello Sailors")
-                color: Theme.secondaryHighlightColor
-                font.pixelSize: Theme.fontSizeExtraLarge
+                ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
+                currLevel += 10
             }
         }
     }
