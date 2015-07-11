@@ -34,6 +34,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
+    allowedOrientations: Orientation.All
 
     function parseWpaCliOutput(output) {
         var wifiInfo = []
@@ -141,8 +142,9 @@ Page {
         anchors.fill: parent
 
         onPaint: {
-            var width = Screen.width - (4.5 * Theme.paddingLarge)
-            var height = Screen.height - (3 * Theme.paddingLarge)
+            var width = parent.width - (4.5 * Theme.paddingLarge)
+            var height = parent.height - (3 * Theme.paddingLarge)
+            console.log(width + "x" + height)
 
             var ctx = graph.getContext("2d")
             ctx.lineWidth = 3
@@ -152,9 +154,9 @@ Page {
 
             ctx.beginPath()
             ctx.moveTo(2.5*Theme.paddingLarge, Theme.paddingLarge)
-            ctx.lineTo(Screen.width-Theme.paddingLarge, Theme.paddingLarge)
-            ctx.lineTo(Screen.width-Theme.paddingLarge, Screen.height-(2*Theme.paddingLarge))
-            ctx.lineTo(2.5*Theme.paddingLarge, Screen.height-(2*Theme.paddingLarge))
+            ctx.lineTo(parent.width-Theme.paddingLarge, Theme.paddingLarge)
+            ctx.lineTo(parent.width-Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
+            ctx.lineTo(2.5*Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
             ctx.closePath()
             ctx.stroke()
 
@@ -164,11 +166,11 @@ Page {
             for (var channelIndex in channels) {
                 ctx.beginPath()
                 ctx.moveTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Theme.paddingLarge)
-                ctx.lineTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Screen.height-(2*Theme.paddingLarge))
+                ctx.lineTo(channels[channelIndex]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
                 ctx.closePath()
                 ctx.stroke()
 
-                ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge), Screen.height-Theme.paddingLarge)
+                ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge), parent.height-Theme.paddingLarge)
                 currChannel += 1
             }
 
@@ -177,7 +179,7 @@ Page {
             for (var levelsIndex in levels) {
                 ctx.beginPath()
                 ctx.moveTo(2.5*Theme.paddingLarge, levels[levelsIndex])
-                ctx.lineTo(Screen.width-Theme.paddingLarge, levels[levelsIndex])
+                ctx.lineTo(parent.width-Theme.paddingLarge, levels[levelsIndex])
                 ctx.closePath()
                 ctx.stroke()
 
@@ -194,6 +196,7 @@ Page {
         onGotResultError: console.log("onGotResultError")
     }
 
+    onOrientationChanged: graph.requestPaint()
     Component.onCompleted: wpaCliHelper.callWpaCli()
 }
 
