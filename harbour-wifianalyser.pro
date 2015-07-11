@@ -14,7 +14,8 @@ TARGET = harbour-wifianalyser
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-wifianalyser.cpp
+SOURCES += src/harbour-wifianalyser.cpp \
+    src/wpaclihelper.cpp
 
 OTHER_FILES += qml/harbour-wifianalyser.qml \
     qml/cover/CoverPage.qml \
@@ -35,4 +36,7 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-wifianalyser-de.ts
+
+HEADERS += \
+    src/wpaclihelper.h
 
