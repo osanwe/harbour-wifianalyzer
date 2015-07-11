@@ -36,6 +36,8 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
+    property variant mWifiInfo: []
+
     function parseWpaCliOutput(output) {
         var wifiInfo = []
         var networks = output.split('\n')
@@ -44,7 +46,8 @@ Page {
             var parts = networks[index].split('\t')
             wifiInfo[wifiInfo.length] = [parts[1], parts[2], parts[4]]
         }
-        updateGraph(wifiInfo)
+        mWifiInfo = wifiInfo
+        graph.requestPaint()
     }
 
     function updateGraph(wifiInfo) {
@@ -137,6 +140,90 @@ Page {
         return levels
     }
 
+    function calculateCurrentSignalLevelPosition(height, level) {
+        return height / 80 * (Math.abs(level) - 20)
+    }
+
+    function calculateBoundsPositionForChannel(width, channel) {
+        var step = width / 94
+        var left
+        var right
+
+        switch (channel) {
+        case 0:
+            left = 0
+            right = 22 * step
+            break
+
+        case 1:
+            left = 3 * step
+            right = 27 * step
+            break
+
+        case 2:
+            left = 10 * step
+            right = 32 * step
+            break
+
+        case 3:
+            left = 15 * step
+            right = 37 * step
+            break
+
+        case 4:
+            left = 20 * step
+            right = 42 * step
+            break
+
+        case 5:
+            left = 25 * step
+            right = 47 * step
+            break
+
+        case 6:
+            left = 30 * step
+            right = 52 * step
+            break
+
+        case 7:
+            left = 35 * step
+            right = 57 * step
+            break
+
+        case 8:
+            left = 40 * step
+            right = 62 * step
+            break
+
+        case 9:
+            left = 50 * step
+            right = 67 * step
+            break
+
+        case 10:
+            left = 50 * step
+            right = 72 * step
+            break
+
+        case 11:
+            left = 55 * step
+            right = 77 * step
+            break
+
+        case 12:
+            left = 60 * step
+            right = 82 * step
+            break
+
+        case 13:
+            left = 72 * step
+            right = 94 * step
+            break
+        }
+
+        return [left, right]
+    }
+
     Canvas {
         id: graph
         anchors.fill: parent
@@ -185,6 +272,24 @@ Page {
 
                 ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
                 currLevel += 10
+            }
+
+            if (mWifiInfo.length === 0) return
+
+            ctx.lineWidth = 2
+            ctx.strokeStyle = "red"
+            ctx.fillStyle = "rgba(255, 0, 0, 0.33)"
+            for (var networkIndex in mWifiInfo) {
+                var channel = calculateChannel(mWifiInfo[networkIndex][0])
+                var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
+                var bounds = calculateBoundsPositionForChannel(width, channel)
+
+                ctx.beginPath()
+                ctx.moveTo(bounds[0]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
+                ctx.bezierCurveTo(channels[channel]+(2.5*Theme.paddingLarge), levelPosition+Theme.paddingLarge, channels[channel]+(2.5*Theme.paddingLarge), levelPosition+Theme.paddingLarge, bounds[1]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
+                ctx.closePath()
+                ctx.stroke()
+                ctx.fill()
             }
         }
     }
