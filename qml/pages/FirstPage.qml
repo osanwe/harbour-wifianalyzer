@@ -257,7 +257,8 @@ Page {
                 ctx.closePath()
                 ctx.stroke()
 
-                ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge), parent.height-Theme.paddingLarge)
+                var textWidth = ctx.measureText(currChannel).width
+                ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge)-(textWidth/2), parent.height-Theme.paddingLarge)
                 currChannel += 1
             }
 
@@ -290,6 +291,9 @@ Page {
                 ctx.closePath()
                 ctx.stroke()
                 ctx.fill()
+
+                var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
+                ctx.fillText(mWifiInfo[networkIndex][2], channels[channel]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
             }
         }
     }
