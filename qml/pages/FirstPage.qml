@@ -33,7 +33,7 @@ import Sailfish.Silica 1.0
 
 
 Page {
-    id: page
+    id: graphPage
     allowedOrientations: Orientation.All
 
     property variant mWifiInfo: []
@@ -234,6 +234,8 @@ Page {
             console.log(width + "x" + height)
 
             var ctx = graph.getContext("2d")
+            ctx.clearRect(0, 0, parent.width, parent.height)
+
             ctx.lineWidth = 3
             ctx.strokeStyle = "gray"
             ctx.fillStyle = "gray"
@@ -334,7 +336,7 @@ Page {
     }
 
     onOrientationChanged: graph.requestPaint()
-    Component.onCompleted: wpaCliHelper.callWpaCli()
+//    Component.onCompleted: wpaCliHelper.callWpaCli()
 }
 
 

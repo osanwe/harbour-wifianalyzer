@@ -36,6 +36,15 @@ ApplicationWindow
 {
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
+
+    Timer {
+        id: updateTimer
+        interval: 2000
+        running: true
+        repeat: true
+
+        onTriggered: wpaCliHelper.callWpaCli()
+    }
 }
 
 
