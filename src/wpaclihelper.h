@@ -2,6 +2,7 @@
 #define WPACLIHELPER_H
 
 #include <QObject>
+#include <QProcess>
 
 class WpaCliHelper : public QObject
 {
