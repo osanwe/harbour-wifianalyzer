@@ -277,10 +277,38 @@ Page {
 
             if (mWifiInfo.length === 0) return
 
+            var strokeColors = ["rgb(128,   0,   0)",
+                                "rgb(255,   0,   0)",
+                                "rgb(128, 128,   0)",
+                                "rgb(255, 255,   0)",
+                                "rgb(  0, 128,   0)",
+                                "rgb(  0, 255,   0)",
+                                "rgb(  0, 128, 128)",
+                                "rgb(  0, 255, 255)",
+                                "rgb(  0,   0, 128)",
+                                "rgb(  0,   0, 255)",
+                                "rgb(128,   0, 128)",
+                                "rgb(255,   0, 255)"]
+            var fillColors = ["rgba(128,   0,   0, 0.33)",
+                              "rgba(255,   0,   0, 0.33)",
+                              "rgba(128, 128,   0, 0.33)",
+                              "rgba(255, 255,   0, 0.33)",
+                              "rgba(  0, 128,   0, 0.33)",
+                              "rgba(  0, 255,   0, 0.33)",
+                              "rgba(  0, 128, 128, 0.33)",
+                              "rgba(  0, 255, 255, 0.33)",
+                              "rgba(  0,   0, 128, 0.33)",
+                              "rgba(  0,   0, 255, 0.33)",
+                              "rgba(128,   0, 128, 0.33)",
+                              "rgba(255,   0, 255, 0.33)"]
+
             ctx.lineWidth = 2
             ctx.strokeStyle = "red"
             ctx.fillStyle = "rgba(255, 0, 0, 0.33)"
             for (var networkIndex in mWifiInfo) {
+                ctx.strokeStyle = strokeColors[networkIndex % strokeColors.length]
+                ctx.fillStyle = fillColors[networkIndex % fillColors.length]
+
                 var channel = calculateChannel(mWifiInfo[networkIndex][0])
                 var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
                 var bounds = calculateBoundsPositionForChannel(width, channel)
