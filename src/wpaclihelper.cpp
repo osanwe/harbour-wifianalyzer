@@ -12,17 +12,17 @@ WpaCliHelper::~WpaCliHelper()
 }
 
 
-void WpaCliHelper::callWpaCli() {
+void WpaCliHelper::callWpaCli(QString password) {
     QProcess process;
 
-    process.start("/bin/bash -c \"echo zxywfjmhn | devel-su wpa_cli scan\"");
+    process.start(QString("/bin/bash -c \"echo %1 | devel-su wpa_cli scan\"").arg((password)));
     if (!process.waitForFinished()) {
         emit gotScanError();
         return;
     }
     mWifiInfo = process.readAll();
 
-    process.start("/bin/bash -c \"echo zxywfjmhn | devel-su wpa_cli scan_results\"");
+    process.start(QString("/bin/bash -c \"echo %1 | devel-su wpa_cli scan_results\"").arg((password)));
     if (!process.waitForFinished()) {
         emit gotResultError();
         return;

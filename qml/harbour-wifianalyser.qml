@@ -47,7 +47,7 @@ ApplicationWindow
         running: true
         repeat: true
 
-        onTriggered: { console.log(password); wpaCliHelper.callWpaCli() }
+        onTriggered: { if (password.length > 0) wpaCliHelper.callWpaCli(password) }
     }
 }
 

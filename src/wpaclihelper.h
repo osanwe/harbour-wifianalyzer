@@ -18,7 +18,7 @@ signals:
     void gotResultError();
 
 public slots:
-    void callWpaCli();
+    void callWpaCli(QString password);
     QString getWifiInfo();
 
 private:
