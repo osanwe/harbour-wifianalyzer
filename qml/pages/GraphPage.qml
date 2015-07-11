@@ -224,108 +224,120 @@ Page {
         return [left, right]
     }
 
-    Canvas {
-        id: graph
+    SilicaFlickable {
         anchors.fill: parent
 
-        onPaint: {
-            var width = parent.width - (4.5 * Theme.paddingLarge)
-            var height = parent.height - (3 * Theme.paddingLarge)
+        PullDownMenu {
 
-            var ctx = graph.getContext("2d")
-            ctx.clearRect(0, 0, parent.width, parent.height)
-
-            ctx.lineWidth = 3
-            ctx.strokeStyle = "gray"
-            ctx.fillStyle = "gray"
-            ctx.font = "12pt sans-serif"
-
-            ctx.beginPath()
-            ctx.moveTo(2.5*Theme.paddingLarge, Theme.paddingLarge)
-            ctx.lineTo(parent.width-Theme.paddingLarge, Theme.paddingLarge)
-            ctx.lineTo(parent.width-Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
-            ctx.lineTo(2.5*Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
-            ctx.closePath()
-            ctx.stroke()
-
-            ctx.lineWidth = 1
-            var currChannel = 1
-            var channels = calculateChannelsPositions(width)
-            for (var channelIndex in channels) {
-                ctx.beginPath()
-                ctx.moveTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Theme.paddingLarge)
-                ctx.lineTo(channels[channelIndex]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                ctx.closePath()
-                ctx.stroke()
-
-                var textWidth = ctx.measureText(currChannel).width
-                ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge)-(textWidth/2), parent.height-Theme.paddingLarge)
-                currChannel += 1
+            MenuItem {
+                text: "Set password"
+                onClicked: pageContainer.push(Qt.resolvedUrl("PasswordPage.qml"))
             }
+        }
 
-            var currLevel = 30
-            var levels = calculateSignalLevelsPositions(height)
-            for (var levelsIndex in levels) {
+        Canvas {
+            id: graph
+            anchors.fill: parent
+
+            onPaint: {
+                var width = parent.width - (4.5 * Theme.paddingLarge)
+                var height = parent.height - (3 * Theme.paddingLarge)
+
+                var ctx = graph.getContext("2d")
+                ctx.clearRect(0, 0, parent.width, parent.height)
+
+                ctx.lineWidth = 3
+                ctx.strokeStyle = "gray"
+                ctx.fillStyle = "gray"
+                ctx.font = "12pt sans-serif"
+
                 ctx.beginPath()
-                ctx.moveTo(2.5*Theme.paddingLarge, levels[levelsIndex])
-                ctx.lineTo(parent.width-Theme.paddingLarge, levels[levelsIndex])
+                ctx.moveTo(2.5*Theme.paddingLarge, Theme.paddingLarge)
+                ctx.lineTo(parent.width-Theme.paddingLarge, Theme.paddingLarge)
+                ctx.lineTo(parent.width-Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
+                ctx.lineTo(2.5*Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
                 ctx.closePath()
                 ctx.stroke()
 
-                console.log("level -" + currLevel + " = " + levels[levelsIndex])
-                ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
-                currLevel += 10
-            }
+                ctx.lineWidth = 1
+                var currChannel = 1
+                var channels = calculateChannelsPositions(width)
+                for (var channelIndex in channels) {
+                    ctx.beginPath()
+                    ctx.moveTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Theme.paddingLarge)
+                    ctx.lineTo(channels[channelIndex]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
+                    ctx.closePath()
+                    ctx.stroke()
 
-            if (mWifiInfo.length === 0) return
+                    var textWidth = ctx.measureText(currChannel).width
+                    ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge)-(textWidth/2), parent.height-Theme.paddingLarge)
+                    currChannel += 1
+                }
 
-            var strokeColors = ["rgb(255,   0,   0)",
-                                "rgb(128, 128,   0)",
-                                "rgb(255, 255,   0)",
-                                "rgb(  0, 128,   0)",
-                                "rgb(  0, 255,   0)",
-                                "rgb(  0, 128, 128)",
-                                "rgb(  0, 255, 255)",
-                                "rgb(  0,   0, 128)",
-                                "rgb(  0,   0, 255)",
-                                "rgb(128,   0, 128)",
-                                "rgb(255,   0, 255)",
-                                "rgb(128,   0,   0)"]
-            var fillColors = ["rgba(255,   0,   0, 0.33)",
-                              "rgba(128, 128,   0, 0.33)",
-                              "rgba(255, 255,   0, 0.33)",
-                              "rgba(  0, 128,   0, 0.33)",
-                              "rgba(  0, 255,   0, 0.33)",
-                              "rgba(  0, 128, 128, 0.33)",
-                              "rgba(  0, 255, 255, 0.33)",
-                              "rgba(  0,   0, 128, 0.33)",
-                              "rgba(  0,   0, 255, 0.33)",
-                              "rgba(128,   0, 128, 0.33)",
-                              "rgba(255,   0, 255, 0.33)",
-                              "rgba(128,   0,   0, 0.33)"]
+                var currLevel = 30
+                var levels = calculateSignalLevelsPositions(height)
+                for (var levelsIndex in levels) {
+                    ctx.beginPath()
+                    ctx.moveTo(2.5*Theme.paddingLarge, levels[levelsIndex])
+                    ctx.lineTo(parent.width-Theme.paddingLarge, levels[levelsIndex])
+                    ctx.closePath()
+                    ctx.stroke()
 
-            ctx.lineWidth = 2
-            for (var networkIndex in mWifiInfo) {
-                ctx.strokeStyle = strokeColors[networkIndex % strokeColors.length]
-                ctx.fillStyle = fillColors[networkIndex % fillColors.length]
+                    console.log("level -" + currLevel + " = " + levels[levelsIndex])
+                    ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
+                    currLevel += 10
+                }
 
-                var channel = calculateChannel(mWifiInfo[networkIndex][0])
-                var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
-                var bounds = calculateBoundsPositionForChannel(width, channel)
-                console.log((levelPosition+Theme.paddingLarge) + " | " + mWifiInfo[networkIndex][1])
+                if (mWifiInfo.length === 0) return
 
-                var cpX = 2*(channels[channel]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
-                var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2
+                var strokeColors = ["rgb(255,   0,   0)",
+                                    "rgb(128, 128,   0)",
+                                    "rgb(255, 255,   0)",
+                                    "rgb(  0, 128,   0)",
+                                    "rgb(  0, 255,   0)",
+                                    "rgb(  0, 128, 128)",
+                                    "rgb(  0, 255, 255)",
+                                    "rgb(  0,   0, 128)",
+                                    "rgb(  0,   0, 255)",
+                                    "rgb(128,   0, 128)",
+                                    "rgb(255,   0, 255)",
+                                    "rgb(128,   0,   0)"]
+                var fillColors = ["rgba(255,   0,   0, 0.33)",
+                                  "rgba(128, 128,   0, 0.33)",
+                                  "rgba(255, 255,   0, 0.33)",
+                                  "rgba(  0, 128,   0, 0.33)",
+                                  "rgba(  0, 255,   0, 0.33)",
+                                  "rgba(  0, 128, 128, 0.33)",
+                                  "rgba(  0, 255, 255, 0.33)",
+                                  "rgba(  0,   0, 128, 0.33)",
+                                  "rgba(  0,   0, 255, 0.33)",
+                                  "rgba(128,   0, 128, 0.33)",
+                                  "rgba(255,   0, 255, 0.33)",
+                                  "rgba(128,   0,   0, 0.33)"]
 
-                ctx.beginPath()
-                ctx.moveTo(bounds[0]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                ctx.quadraticCurveTo(cpX, cpY, bounds[1]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                ctx.closePath()
-                ctx.stroke()
-                ctx.fill()
+                ctx.lineWidth = 2
+                for (var networkIndex in mWifiInfo) {
+                    ctx.strokeStyle = strokeColors[networkIndex % strokeColors.length]
+                    ctx.fillStyle = fillColors[networkIndex % fillColors.length]
 
-                var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
-                ctx.fillText(mWifiInfo[networkIndex][2], channels[channel]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
+                    var channel = calculateChannel(mWifiInfo[networkIndex][0])
+                    var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
+                    var bounds = calculateBoundsPositionForChannel(width, channel)
+                    console.log((levelPosition+Theme.paddingLarge) + " | " + mWifiInfo[networkIndex][1])
+
+                    var cpX = 2*(channels[channel]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
+                    var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2
+
+                    ctx.beginPath()
+                    ctx.moveTo(bounds[0]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
+                    ctx.quadraticCurveTo(cpX, cpY, bounds[1]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
+                    ctx.closePath()
+                    ctx.stroke()
+                    ctx.fill()
+
+                    var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
+                    ctx.fillText(mWifiInfo[networkIndex][2], channels[channel]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
+                }
             }
         }
     }

@@ -19,13 +19,13 @@ SOURCES += src/harbour-wifianalyser.cpp \
 
 OTHER_FILES += qml/harbour-wifianalyser.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/harbour-wifianalyser.changes.in \
     rpm/harbour-wifianalyser.spec \
     rpm/harbour-wifianalyser.yaml \
     translations/*.ts \
-    harbour-wifianalyser.desktop
+    harbour-wifianalyser.desktop \
+    qml/pages/GraphPage.qml \
+    qml/pages/PasswordPage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
