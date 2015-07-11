@@ -35,6 +35,21 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    function parseWpaCliOutput(output) {
+        var wifiInfo = []
+        var networks = output.split('\n')
+        networks = networks.slice(2, networks.length-1)
+        for (var index in networks) {
+            var parts = networks[index].split('\t')
+            wifiInfo[wifiInfo.length] = [parts[1], parts[2], parts[4]]
+        }
+        updateGraph(wifiInfo)
+    }
+
+    function updateGraph(wifiInfo) {
+        //
+    }
+
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
@@ -71,7 +86,7 @@ Page {
 
     Connections {
         target: wpaCliHelper
-        onCalledWpaCli: console.log(wpaCliHelper.getWifiInfo())
+        onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
         onGotScanError: console.log("onGotScanError")
         onGotResultError: console.log("onGotResultError")
     }
