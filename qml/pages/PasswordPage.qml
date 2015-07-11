@@ -39,19 +39,24 @@ Dialog {
         anchors.fill: parent
 
         DialogHeader {
-            acceptText: "Сохранить"
-            cancelText: "Отменить"
+            acceptText: "Save"
+            cancelText: "Cancel"
         }
 
         Label {
-            text: "Введите пароль"
+            width: parent.width
+            text: "Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting."
         }
 
         TextField {
-            placeholderText: "Пароль"
-            label: "Пароль"
+            id: passwordField
+            width: parent.width
+            placeholderText: "Type password:"
+            label: "Your password"
         }
     }
+
+    onAccepted: rootApp.password = passwordField.text
 }
 
 

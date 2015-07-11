@@ -283,7 +283,7 @@ Page {
                     ctx.closePath()
                     ctx.stroke()
 
-                    console.log("level -" + currLevel + " = " + levels[levelsIndex])
+//                    console.log("level -" + currLevel + " = " + levels[levelsIndex])
                     ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
                     currLevel += 10
                 }
@@ -323,7 +323,7 @@ Page {
                     var channel = calculateChannel(mWifiInfo[networkIndex][0])
                     var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
                     var bounds = calculateBoundsPositionForChannel(width, channel)
-                    console.log((levelPosition+Theme.paddingLarge) + " | " + mWifiInfo[networkIndex][1])
+//                    console.log((levelPosition+Theme.paddingLarge) + " | " + mWifiInfo[networkIndex][1])
 
                     var cpX = 2*(channels[channel]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
                     var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2

@@ -34,6 +34,10 @@ import "pages"
 
 ApplicationWindow
 {
+    id: rootApp
+
+    property string password: ""
+
     initialPage: Component { GraphPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
@@ -43,7 +47,7 @@ ApplicationWindow
         running: true
         repeat: true
 
-        onTriggered: wpaCliHelper.callWpaCli()
+        onTriggered: { console.log(password); wpaCliHelper.callWpaCli() }
     }
 }
 
