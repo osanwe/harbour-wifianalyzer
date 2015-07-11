@@ -231,7 +231,6 @@ Page {
         onPaint: {
             var width = parent.width - (4.5 * Theme.paddingLarge)
             var height = parent.height - (3 * Theme.paddingLarge)
-            console.log(width + "x" + height)
 
             var ctx = graph.getContext("2d")
             ctx.clearRect(0, 0, parent.width, parent.height)
@@ -273,14 +272,14 @@ Page {
                 ctx.closePath()
                 ctx.stroke()
 
+                console.log("level -" + currLevel + " = " + levels[levelsIndex])
                 ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
                 currLevel += 10
             }
 
             if (mWifiInfo.length === 0) return
 
-            var strokeColors = ["rgb(128,   0,   0)",
-                                "rgb(255,   0,   0)",
+            var strokeColors = ["rgb(255,   0,   0)",
                                 "rgb(128, 128,   0)",
                                 "rgb(255, 255,   0)",
                                 "rgb(  0, 128,   0)",
@@ -290,9 +289,9 @@ Page {
                                 "rgb(  0,   0, 128)",
                                 "rgb(  0,   0, 255)",
                                 "rgb(128,   0, 128)",
-                                "rgb(255,   0, 255)"]
-            var fillColors = ["rgba(128,   0,   0, 0.33)",
-                              "rgba(255,   0,   0, 0.33)",
+                                "rgb(255,   0, 255)",
+                                "rgb(128,   0,   0)"]
+            var fillColors = ["rgba(255,   0,   0, 0.33)",
                               "rgba(128, 128,   0, 0.33)",
                               "rgba(255, 255,   0, 0.33)",
                               "rgba(  0, 128,   0, 0.33)",
@@ -302,11 +301,10 @@ Page {
                               "rgba(  0,   0, 128, 0.33)",
                               "rgba(  0,   0, 255, 0.33)",
                               "rgba(128,   0, 128, 0.33)",
-                              "rgba(255,   0, 255, 0.33)"]
+                              "rgba(255,   0, 255, 0.33)",
+                              "rgba(128,   0,   0, 0.33)"]
 
             ctx.lineWidth = 2
-            ctx.strokeStyle = "red"
-            ctx.fillStyle = "rgba(255, 0, 0, 0.33)"
             for (var networkIndex in mWifiInfo) {
                 ctx.strokeStyle = strokeColors[networkIndex % strokeColors.length]
                 ctx.fillStyle = fillColors[networkIndex % fillColors.length]
@@ -314,10 +312,14 @@ Page {
                 var channel = calculateChannel(mWifiInfo[networkIndex][0])
                 var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
                 var bounds = calculateBoundsPositionForChannel(width, channel)
+                console.log((levelPosition+Theme.paddingLarge) + " | " + mWifiInfo[networkIndex][1])
+
+                var cpX = 2*(channels[channel]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
+                var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2
 
                 ctx.beginPath()
                 ctx.moveTo(bounds[0]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                ctx.bezierCurveTo(channels[channel]+(2.5*Theme.paddingLarge), levelPosition+Theme.paddingLarge, channels[channel]+(2.5*Theme.paddingLarge), levelPosition+Theme.paddingLarge, bounds[1]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
+                ctx.quadraticCurveTo(cpX, cpY, bounds[1]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
                 ctx.closePath()
                 ctx.stroke()
                 ctx.fill()
