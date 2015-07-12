@@ -221,6 +221,11 @@ Page {
         PullDownMenu {
 
             MenuItem {
+                text: qsTr("About")
+                onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+
+            MenuItem {
                 text: qsTr("Set password")
                 onClicked: pageContainer.push(Qt.resolvedUrl("PasswordPage.qml"))
             }

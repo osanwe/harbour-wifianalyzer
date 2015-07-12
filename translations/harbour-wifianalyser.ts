@@ -2,10 +2,45 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>The simple tool for WiFi networks analyzing distributed under the terms of the GNU GPLv3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This app uses icons by &lt;a href=&quot;http://www.flaticon.com/authors/rami-mcmin&quot;&gt;Rami McMin&lt;/a&gt; and &lt;a href=&quot;http://www.flaticon.com/authors/freepik&quot;&gt;Freepik&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can connect with an author, improve the app or donate:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;a href=&quot;https://github.com/osanwe/harbour-wifianalyzer&quot;&gt;GitHub&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;a href=&quot;https://twitter.com/Osanwe&quot;&gt;Ósanwe&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;a href=&quot;https://flattr.com/submit/auto?user_id=osanwe&amp;url=https://github.com/osanwe/harbour-wifianalyzer&amp;title=WiFi%20Analyzer&quot;&gt;Flattr&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WiFi Analyzer v1.0.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GraphPage</name>
     <message>
         <source>Set password</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
