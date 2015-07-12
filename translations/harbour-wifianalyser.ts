@@ -2,13 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CoverPage</name>
-    <message>
-        <source>My Cover</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>GraphPage</name>
     <message>
         <source>Set password</source>

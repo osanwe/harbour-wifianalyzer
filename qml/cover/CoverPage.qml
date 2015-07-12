@@ -32,22 +32,27 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
+
+    Column {
         anchors.centerIn: parent
-        text: qsTr("My Cover")
+
+        Label {
+            id: label
+            font.bold: true
+            font.pixelSize: Theme.fontSizeHuge
+            text: "0"
+        }
+
+        Label {
+            text: "WiFi networks"
+        }
     }
 
-    CoverActionList {
-        id: coverAction
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-next"
-        }
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
-        }
+    Connections {
+        target: wpaCliHelper
+        onCalledWpaCli: label.text = (wpaCliHelper.getWifiInfo().split('\n').length - 3)
+        onGotScanError: console.log("onGotScanError")
+        onGotResultError: console.log("onGotResultError")
     }
 }
 
