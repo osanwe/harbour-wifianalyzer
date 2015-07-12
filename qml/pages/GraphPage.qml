@@ -335,6 +335,7 @@ Page {
                     ctx.stroke()
                     ctx.fill()
 
+                    ctx.fillStyle = ctx.strokeStyle
                     var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
                     ctx.fillText(mWifiInfo[networkIndex][2], channels[channel]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
                 }

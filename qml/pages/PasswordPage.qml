@@ -35,6 +35,8 @@ import Sailfish.Silica 1.0
 Dialog {
     id: passwordPage
 
+    property bool isHide: true
+
     Column {
         anchors.fill: parent
 
@@ -44,15 +46,34 @@ Dialog {
         }
 
         Label {
-            width: parent.width
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.paddingLarge
             text: "Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting."
+            wrapMode: Text.Wrap
         }
 
-        TextField {
-            id: passwordField
-            width: parent.width
-            placeholderText: "Type password:"
-            label: "Your password"
+        Row {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.paddingLarge
+
+            TextField {
+                id: passwordField
+                width: parent.width - changePasswordFieldEchoMode.width
+                placeholderText: "Type devel-su password:"
+                label: "Your devel-su password"
+                echoMode: isHide ? TextInput.Password : TextInput.Normal
+                focus: true
+            }
+
+            IconButton {
+                id: changePasswordFieldEchoMode
+                icon.source: isHide ? "image://theme/icon-m-dialpad" : "image://theme/icon-m-device-lock"
+                onClicked: isHide = !isHide
+            }
         }
     }
 
