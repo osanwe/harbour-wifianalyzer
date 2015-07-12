@@ -230,7 +230,7 @@ Page {
         PullDownMenu {
 
             MenuItem {
-                text: "Set password"
+                text: qsTr("Set password")
                 onClicked: pageContainer.push(Qt.resolvedUrl("PasswordPage.qml"))
             }
         }

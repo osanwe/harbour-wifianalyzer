@@ -41,8 +41,8 @@ Dialog {
         anchors.fill: parent
 
         DialogHeader {
-            acceptText: "Save"
-            cancelText: "Cancel"
+            acceptText: qsTr("Save")
+            cancelText: qsTr("Cancel")
         }
 
         Label {
@@ -50,7 +50,7 @@ Dialog {
             anchors.right: parent.right
             anchors.leftMargin: Theme.paddingLarge
             anchors.rightMargin: Theme.paddingLarge
-            text: "Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting."
+            text: qsTr("Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting. Your devel-su password is required for starting `wpa_cli` util.")
             wrapMode: Text.Wrap
         }
 
@@ -63,8 +63,8 @@ Dialog {
             TextField {
                 id: passwordField
                 width: parent.width - changePasswordFieldEchoMode.width
-                placeholderText: "Type devel-su password:"
-                label: "Your devel-su password"
+                placeholderText: qsTr("Type devel-su password:")
+                label: qsTr("Your devel-su password")
                 echoMode: isHide ? TextInput.Password : TextInput.Normal
                 focus: true
             }
