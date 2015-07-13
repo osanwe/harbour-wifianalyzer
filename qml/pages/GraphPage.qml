@@ -119,7 +119,7 @@ Page {
     }
 
     function calculateSignalLevelsPositions(height) {
-        var step = height / 8
+        var step = height / 10
 
         var levels = []
         levels[0] = step + Theme.paddingLarge
@@ -129,12 +129,14 @@ Page {
         levels[4] = (5 * step) + Theme.paddingLarge
         levels[5] = (6 * step) + Theme.paddingLarge
         levels[6] = (7 * step) + Theme.paddingLarge
+        levels[7] = (8 * step) + Theme.paddingLarge
+        levels[8] = (9 * step) + Theme.paddingLarge
 
         return levels
     }
 
     function calculateCurrentSignalLevelPosition(height, level) {
-        return height / 80 * (Math.abs(level) - 20)
+        return height / 100 * Math.abs(level)
     }
 
     function calculateBoundsPositionForChannel(width, channel) {
@@ -272,7 +274,7 @@ Page {
                     currChannel += 1
                 }
 
-                var currLevel = 30
+                var currLevel = 10
                 var levels = calculateSignalLevelsPositions(height)
                 for (var levelsIndex in levels) {
                     ctx.beginPath()

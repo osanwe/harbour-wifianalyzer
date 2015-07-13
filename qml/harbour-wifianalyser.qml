@@ -38,7 +38,7 @@ ApplicationWindow
         running: true
         repeat: true
 
-        onTriggered: { /*if (password.length > 0)*/ wpaCliHelper.callWpaCli(password) }
+        onTriggered: { if (password.length > 0) wpaCliHelper.callWpaCli(password) }
     }
 }
 
