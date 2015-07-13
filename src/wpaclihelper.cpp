@@ -44,7 +44,6 @@ void WpaCliHelper::callWpaCli(QString password) {
     mWifiInfo = process.readAll();
 
     if (mWifiInfo.contains("Auth failed")) {
-//        qDebug() << QString::number(process.pid());
         emit gotAuthError();
         return;
     }

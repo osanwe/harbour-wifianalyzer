@@ -28,6 +28,7 @@ ApplicationWindow
     id: rootApp
 
     property string password: ""
+    property string oldPassword: "sdh"
 
     initialPage: Component { GraphPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
@@ -38,7 +39,9 @@ ApplicationWindow
         running: true
         repeat: true
 
-        onTriggered: { if (password.length > 0) wpaCliHelper.callWpaCli(password) }
+        onTriggered: {
+            if (password.length > 0 && password !== oldPassword) wpaCliHelper.callWpaCli(password)
+        }
     }
 }
 

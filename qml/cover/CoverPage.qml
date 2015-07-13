@@ -71,7 +71,10 @@ CoverBackground {
     Connections {
         target: wpaCliHelper
         onCalledWpaCli: calculateWifiNetworksCount(wpaCliHelper.getWifiInfo())
-        onGotAuthError: console.log("onGotAuthError")
+        onGotAuthError: {
+            rootApp.oldPassword = rootApp.password
+            console.log("onGotAuthError")
+        }
         onGotResultError: console.log("onGotResultError")
         onGotScanError: console.log("onGotScanError")
     }
