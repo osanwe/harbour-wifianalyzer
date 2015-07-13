@@ -344,8 +344,9 @@ Page {
     Connections {
         target: wpaCliHelper
         onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
-        onGotScanError: console.log("onGotScanError")
+        onGotAuthError: console.log("onGotAuthError")
         onGotResultError: console.log("onGotResultError")
+        onGotScanError: console.log("onGotScanError")
     }
 
     onOrientationChanged: graph.requestPaint()

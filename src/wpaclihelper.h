@@ -35,8 +35,9 @@ public:
 
 signals:
     void calledWpaCli();
-    void gotScanError();
+    void gotAuthError();
     void gotResultError();
+    void gotScanError();
 
 public slots:
     void callWpaCli(QString password);

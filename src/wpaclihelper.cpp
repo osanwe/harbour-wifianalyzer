@@ -43,6 +43,12 @@ void WpaCliHelper::callWpaCli(QString password) {
     }
     mWifiInfo = process.readAll();
 
+    if (mWifiInfo.contains("Auth failed")) {
+        qDebug() << QString::number(process.pid());
+        emit gotAuthError();
+        return;
+    }
+
     process.start(QString("/bin/bash -c \"echo %1 | devel-su wpa_cli scan_results\"").arg((password)));
     if (!process.waitForFinished()) {
         emit gotResultError();
