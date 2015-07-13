@@ -72,6 +72,9 @@ CoverBackground {
         target: wpaCliHelper
         onCalledWpaCli: calculateWifiNetworksCount(wpaCliHelper.getWifiInfo())
         onGotAuthError: {
+            infoColumn.visible = false
+            errorMessage.visible = true
+            errorMessage.text = "Please, type correct password"
             rootApp.oldPassword = rootApp.password
             console.log("onGotAuthError")
         }
