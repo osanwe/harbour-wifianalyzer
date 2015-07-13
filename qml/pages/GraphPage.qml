@@ -352,7 +352,6 @@ Page {
     }
 
     onOrientationChanged: graph.requestPaint()
-//    Component.onCompleted: wpaCliHelper.callWpaCli()
 }
 
 

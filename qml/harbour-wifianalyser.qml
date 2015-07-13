@@ -43,6 +43,8 @@ ApplicationWindow
             if (password.length > 0 && password !== oldPassword) wpaCliHelper.callWpaCli(password)
         }
     }
+
+    Component.onCompleted: pageStack.push(Qt.resolvedUrl("pages/PasswordPage.qml"))
 }
 
 
