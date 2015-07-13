@@ -44,6 +44,7 @@ CoverBackground {
     Column {
         id: infoColumn
         anchors.centerIn: parent
+        visible: false
 
         Label {
             id: wifiCounter
@@ -65,7 +66,8 @@ CoverBackground {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.Wrap
-        text: ""
+        visible: true
+        text: "Please, type correct password"
     }
 
     Connections {
