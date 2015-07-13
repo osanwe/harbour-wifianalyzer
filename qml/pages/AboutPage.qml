@@ -40,7 +40,7 @@ Page {
         model: aboutPage.model
 
         header: PageHeader {
-            title: qsTr("WiFi Analyzer v1.0.0")
+            title: qsTr("WiFi Analyzer v1.1.0")
         }
 
         delegate: Item {
