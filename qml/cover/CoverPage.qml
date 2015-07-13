@@ -24,11 +24,29 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
+    function calculateWifiNetworksCount(output) {
+        var wifiNetworksCount = output.split('\n').length - 3
+        switch (wifiNetworksCount) {
+        case -2:
+            infoColumn.visible = false
+            errorMessage.visible = true
+            errorMessage.text = "Please, turn WiFi on"
+            return
+
+        default:
+            infoColumn.visible = true
+            errorMessage.visible = false
+            wifiCounter.text = wifiNetworksCount
+            return
+        }
+    }
+
     Column {
+        id: infoColumn
         anchors.centerIn: parent
 
         Label {
-            id: label
+            id: wifiCounter
             font.bold: true
             font.pixelSize: Theme.fontSizeHuge
             text: "0"
@@ -39,9 +57,20 @@ CoverBackground {
         }
     }
 
+    Label {
+        id: errorMessage
+        anchors.fill: parent
+        anchors.leftMargin: Theme.paddingSmall
+        anchors.rightMargin: Theme.paddingSmall
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.Wrap
+        text: ""
+    }
+
     Connections {
         target: wpaCliHelper
-        onCalledWpaCli: label.text = (wpaCliHelper.getWifiInfo().split('\n').length - 3)
+        onCalledWpaCli: calculateWifiNetworksCount(wpaCliHelper.getWifiInfo())
         onGotScanError: console.log("onGotScanError")
         onGotResultError: console.log("onGotResultError")
     }

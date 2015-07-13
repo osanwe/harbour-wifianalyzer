@@ -30,6 +30,8 @@ Page {
     property variant mWifiInfo: []
 
     function parseWpaCliOutput(output) {
+        console.log(output)
+
         var wifiInfo = []
         var networks = output.split('\n')
         networks = networks.slice(2, networks.length-1)

@@ -42,12 +42,12 @@
 <context>
     <name>GraphPage</name>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="224"/>
+        <location filename="../qml/pages/GraphPage.qml" line="226"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="229"/>
+        <location filename="../qml/pages/GraphPage.qml" line="231"/>
         <source>Set password</source>
         <translation>Указать пароль</translation>
     </message>
