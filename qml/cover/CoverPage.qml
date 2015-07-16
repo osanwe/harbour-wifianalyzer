@@ -30,7 +30,7 @@ CoverBackground {
         case -2:
             infoColumn.visible = false
             errorMessage.visible = true
-            errorMessage.text = "Please, turn WiFi on"
+            errorMessage.text = qsTr("Please, turn WiFi on")
             return
 
         default:
@@ -54,7 +54,7 @@ CoverBackground {
         }
 
         Label {
-            text: "WiFi networks"
+            text: qsTr("WiFi networks")
         }
     }
 
@@ -67,7 +67,7 @@ CoverBackground {
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.Wrap
         visible: true
-        text: "Please, type correct password"
+        text: qsTr("Please, type correct password")
     }
 
     Connections {
@@ -76,7 +76,7 @@ CoverBackground {
         onGotAuthError: {
             infoColumn.visible = false
             errorMessage.visible = true
-            errorMessage.text = "Please, type correct password"
+            errorMessage.text = qsTr("Please, type correct password")
             rootApp.oldPassword = rootApp.password
             console.log("onGotAuthError")
         }

@@ -40,6 +40,25 @@
     </message>
 </context>
 <context>
+    <name>CoverPage</name>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="33"/>
+        <source>Please, turn WiFi on</source>
+        <translation>Пожалуйста, включите WiFi</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="57"/>
+        <source>WiFi networks</source>
+        <translation>WiFi сетей</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="70"/>
+        <location filename="../qml/cover/CoverPage.qml" line="79"/>
+        <source>Please, type correct password</source>
+        <translation>Пожалуйста, введите корректный пароль</translation>
+    </message>
+</context>
+<context>
     <name>GraphPage</name>
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="228"/>

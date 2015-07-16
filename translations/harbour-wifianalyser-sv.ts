@@ -33,6 +33,21 @@
     </message>
 </context>
 <context>
+    <name>CoverPage</name>
+    <message>
+        <source>Please, turn WiFi on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WiFi networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please, type correct password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GraphPage</name>
     <message>
         <source>Set password</source>

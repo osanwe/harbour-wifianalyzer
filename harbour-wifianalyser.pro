@@ -37,7 +37,8 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 #TRANSLATIONS += translations/harbour-wifianalyser-de.ts
-TRANSLATIONS += translations/*.ts
+TRANSLATIONS += translations/harbour-wifianalyser-ru.ts \
+    translations/harbour-wifianalyser-sv.ts
 
 HEADERS += \
     src/wpaclihelper.h
