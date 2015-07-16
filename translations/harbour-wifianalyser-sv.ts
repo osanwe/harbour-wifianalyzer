@@ -36,15 +36,15 @@
     <name>CoverPage</name>
     <message>
         <source>Please, turn WiFi on</source>
-        <translation type="unfinished"></translation>
+        <translation>Du måste aktivera WiFi</translation>
     </message>
     <message>
         <source>WiFi networks</source>
-        <translation type="unfinished"></translation>
+        <translation>WiFi-nätverk</translation>
     </message>
     <message>
         <source>Please, type correct password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange korrekt lösenord</translation>
     </message>
 </context>
 <context>
