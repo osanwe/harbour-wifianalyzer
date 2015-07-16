@@ -36,7 +36,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="43"/>
         <source>WiFi Analyzer v1.1.0</source>
-        <translation type="unfinished"></translation>
+        <translation>WiFi Analyzer v1.1.0</translation>
     </message>
 </context>
 <context>
