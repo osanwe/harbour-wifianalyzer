@@ -27,6 +27,21 @@ Page {
     id: graphPage
     allowedOrientations: Orientation.All
 
+    property variant mWifiInfo: []
+
+    function parseWpaCliOutput(output) {
+        console.log(output)
+
+        var wifiInfo = []
+        var networks = output.split('\n')
+        networks = networks.slice(2, networks.length-1)
+        for (var index in networks) {
+            var parts = networks[index].split('\t')
+            wifiInfo[wifiInfo.length] = [parts[1], parts[2], parts[4]]
+        }
+        mWifiInfo = wifiInfo
+    }
+
     SilicaListView {
         anchors.fill: parent
 
@@ -50,5 +65,58 @@ Page {
                 onClicked: pageContainer.replace(Qt.resolvedUrl("GraphPage.qml"))
             }
         }
+
+        model: 10
+
+        delegate: Item {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.paddingLarge
+            height: Theme.itemSizeMedium
+
+            Column {
+                anchors.fill: parent
+                anchors.topMargin: Theme.paddingLarge
+                anchors.bottomMargin: Theme.paddingLarge
+
+                Row {
+                    width: parent.width
+
+                    Label {
+                        width: parent.width / 3
+                        horizontalAlignment: Text.AlignLeft
+                        text: "by DC Osanve"
+                    }
+
+                    Label {
+                        width: parent.width / 3
+                        horizontalAlignment: Text.AlignRight
+                        text: "6 ch."
+                    }
+
+                    Label {
+                        width: parent.width / 3
+                        horizontalAlignment: Text.AlignRight
+                        text: "-60 dB"
+                    }
+                }
+
+                ProgressBar {
+                    width: parent.width
+                    minimumValue: -100
+                    maximumValue: 0
+                    value: -60
+                }
+            }
+        }
+    }
+
+    Connections {
+        target: wpaCliHelper
+        onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
+        onGotAuthError: console.log("onGotAuthError")
+        onGotResultError: console.log("onGotResultError")
+        onGotScanError: console.log("onGotScanError")
     }
 }
