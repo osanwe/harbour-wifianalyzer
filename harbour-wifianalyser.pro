@@ -26,7 +26,8 @@ OTHER_FILES += qml/harbour-wifianalyser.qml \
     harbour-wifianalyser.desktop \
     qml/pages/GraphPage.qml \
     qml/pages/PasswordPage.qml \
-    qml/pages/AboutPage.qml
+    qml/pages/AboutPage.qml \
+    qml/pages/ListPage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

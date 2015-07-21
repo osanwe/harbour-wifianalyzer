@@ -70,6 +70,29 @@
         <source>Set password</source>
         <translation>Указать пароль</translation>
     </message>
+    <message>
+        <location filename="../qml/pages/GraphPage.qml" line="241"/>
+        <source>List view</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ListPage</name>
+    <message>
+        <location filename="../qml/pages/ListPage.qml" line="36"/>
+        <source>About</source>
+        <translation type="unfinished">О программе</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ListPage.qml" line="41"/>
+        <source>Set password</source>
+        <translation type="unfinished">Указать пароль</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ListPage.qml" line="49"/>
+        <source>Graph view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PasswordPage</name>

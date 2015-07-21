@@ -235,6 +235,14 @@ Page {
             }
         }
 
+        PushUpMenu {
+
+            MenuItem {
+                text: qsTr("List view")
+                onClicked: pageContainer.replace(Qt.resolvedUrl("ListPage.qml"))
+            }
+        }
+
         Canvas {
             id: graph
             anchors.fill: parent
