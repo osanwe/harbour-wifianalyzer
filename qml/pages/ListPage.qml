@@ -27,66 +27,6 @@ Page {
     id: graphPage
     allowedOrientations: Orientation.All
 
-    function parseWpaCliOutput(output) {
-        console.log(output)
-
-        var networks = output.split('\n')
-        networks = networks.slice(2, networks.length-1)
-        wifiInfoList.model.clear()
-        for (var index in networks) {
-            var parts = networks[index].split('\t')
-            wifiInfoList.model.append({ channel: calculateChannel(parts[1]) + 1,
-                                        level: parts[2],
-                                        name: parts[4] })
-        }
-    }
-
-    function calculateChannel(frequency) {
-        switch (parseInt(frequency, 10)) {
-        case 2412:
-            return 0
-
-        case 2417:
-            return 1
-
-        case 2422:
-            return 2
-
-        case 2427:
-            return 3
-
-        case 2432:
-            return 4
-
-        case 2437:
-            return 5
-
-        case 2442:
-            return 6
-
-        case 2447:
-            return 7
-
-        case 2452:
-            return 8
-
-        case 2457:
-            return 9
-
-        case 2462:
-            return 10
-
-        case 2467:
-            return 11
-
-        case 2472:
-            return 12
-
-        case 2484:
-            return 13
-        }
-    }
-
     SilicaListView {
         id: wifiInfoList
         anchors.fill: parent
@@ -160,9 +100,27 @@ Page {
 
     Connections {
         target: wpaCliHelper
-        onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
+        onCalledWpaCli: wifiInfoParser.parseInfo(wpaCliHelper.getWifiInfo())
         onGotAuthError: console.log("onGotAuthError")
         onGotResultError: console.log("onGotResultError")
         onGotScanError: console.log("onGotScanError")
+    }
+
+    Connections {
+        target: wifiInfoParser
+        onParsed: {
+            wifiInfoList.model.clear()
+            switch (exitCode) {
+            case 0:
+                var networks = wifiInfoParser.getWifiInfo()
+                for (var network in networks) {
+                    wifiInfoList.model.append({ channel: parseInt(networks[network][0]) + 1,
+                                                level:   networks[network][1],
+                                                name:    networks[network][2] })
+                }
+
+                break
+            }
+        }
     }
 }
