@@ -27,22 +27,68 @@ Page {
     id: graphPage
     allowedOrientations: Orientation.All
 
-    property variant mWifiInfo: []
-
     function parseWpaCliOutput(output) {
         console.log(output)
 
-        var wifiInfo = []
         var networks = output.split('\n')
         networks = networks.slice(2, networks.length-1)
+        wifiInfoList.model.clear()
         for (var index in networks) {
             var parts = networks[index].split('\t')
-            wifiInfo[wifiInfo.length] = [parts[1], parts[2], parts[4]]
+            wifiInfoList.model.append({ channel: calculateChannel(parts[1]) + 1,
+                                        level: parts[2],
+                                        name: parts[4] })
         }
-        mWifiInfo = wifiInfo
+    }
+
+    function calculateChannel(frequency) {
+        switch (parseInt(frequency, 10)) {
+        case 2412:
+            return 0
+
+        case 2417:
+            return 1
+
+        case 2422:
+            return 2
+
+        case 2427:
+            return 3
+
+        case 2432:
+            return 4
+
+        case 2437:
+            return 5
+
+        case 2442:
+            return 6
+
+        case 2447:
+            return 7
+
+        case 2452:
+            return 8
+
+        case 2457:
+            return 9
+
+        case 2462:
+            return 10
+
+        case 2467:
+            return 11
+
+        case 2472:
+            return 12
+
+        case 2484:
+            return 13
+        }
     }
 
     SilicaListView {
+        id: wifiInfoList
         anchors.fill: parent
 
         PullDownMenu {
@@ -66,7 +112,7 @@ Page {
             }
         }
 
-        model: 10
+        model: ListModel {}
 
         delegate: Item {
             anchors.left: parent.left
@@ -86,19 +132,19 @@ Page {
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignLeft
-                        text: "by DC Osanve"
+                        text: name
                     }
 
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignRight
-                        text: "6 ch."
+                        text: channel + " ch."
                     }
 
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignRight
-                        text: "-60 dB"
+                        text: level + " dB"
                     }
                 }
 
@@ -106,7 +152,7 @@ Page {
                     width: parent.width
                     minimumValue: -100
                     maximumValue: 0
-                    value: -60
+                    value: level
                 }
             }
         }
