@@ -29,73 +29,6 @@ Page {
 
     property variant mWifiInfo: []
 
-    function parseWpaCliOutput(output) {
-        console.log(output)
-
-        var wifiInfo = []
-        var networks = output.split('\n')
-        networks = networks.slice(2, networks.length-1)
-        for (var index in networks) {
-            var parts = networks[index].split('\t')
-            wifiInfo[wifiInfo.length] = [parts[1], parts[2], parts[4]]
-        }
-        mWifiInfo = wifiInfo
-        graph.requestPaint()
-    }
-
-    function updateGraph(wifiInfo) {
-        for (var index in wifiInfo) {
-            var channel = calculateChannel(wifiInfo[index][0])
-            console.log(wifiInfo[index][0] + " | " + channel)
-        }
-    }
-
-    function calculateChannel(frequency) {
-        switch (parseInt(frequency, 10)) {
-        case 2412:
-            return 0
-
-        case 2417:
-            return 1
-
-        case 2422:
-            return 2
-
-        case 2427:
-            return 3
-
-        case 2432:
-            return 4
-
-        case 2437:
-            return 5
-
-        case 2442:
-            return 6
-
-        case 2447:
-            return 7
-
-        case 2452:
-            return 8
-
-        case 2457:
-            return 9
-
-        case 2462:
-            return 10
-
-        case 2467:
-            return 11
-
-        case 2472:
-            return 12
-
-        case 2484:
-            return 13
-        }
-    }
-
     function calculateChannelsPositions(width) {
         var step = width / 94
 
@@ -291,7 +224,6 @@ Page {
                     ctx.closePath()
                     ctx.stroke()
 
-//                    console.log("level -" + currLevel + " = " + levels[levelsIndex])
                     ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
                     currLevel += 10
                 }
@@ -328,12 +260,10 @@ Page {
                     ctx.strokeStyle = strokeColors[networkIndex % strokeColors.length]
                     ctx.fillStyle = fillColors[networkIndex % fillColors.length]
 
-                    var channel = calculateChannel(mWifiInfo[networkIndex][0])
                     var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
-                    var bounds = calculateBoundsPositionForChannel(width, channel)
-//                    console.log((levelPosition+Theme.paddingLarge) + " | " + mWifiInfo[networkIndex][1])
+                    var bounds = calculateBoundsPositionForChannel(width, mWifiInfo[0])
 
-                    var cpX = 2*(channels[channel]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
+                    var cpX = 2*(channels[mWifiInfo[0]]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
                     var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2
 
                     ctx.beginPath()
@@ -345,7 +275,7 @@ Page {
 
                     ctx.fillStyle = ctx.strokeStyle
                     var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
-                    ctx.fillText(mWifiInfo[networkIndex][2], channels[channel]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
+                    ctx.fillText(mWifiInfo[networkIndex][2], channels[mWifiInfo[0]]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
                 }
             }
         }
@@ -353,10 +283,25 @@ Page {
 
     Connections {
         target: wpaCliHelper
-        onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
+//        onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
+        onCalledWpaCli: wifiInfoParser.parseInfo(wpaCliHelper.getWifiInfo())
         onGotAuthError: console.log("onGotAuthError")
         onGotResultError: console.log("onGotResultError")
         onGotScanError: console.log("onGotScanError")
+    }
+
+    Connections {
+        target: wifiInfoParser
+        onParsed: {
+            mWifiInfo = []
+            switch (exitCode) {
+            case 0:
+                mWifiInfo = wifiInfoParser.getWifiInfo()
+                break
+            }
+            console.log(mWifiInfo)
+            graph.requestPaint()
+        }
     }
 
     onOrientationChanged: graph.requestPaint()

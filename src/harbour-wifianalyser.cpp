@@ -29,6 +29,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 
+#include "wifiinfoparser.h"
 #include "wpaclihelper.h"
 
 
@@ -45,8 +46,10 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
+    QScopedPointer<WifiInfoParser> wifiInfoParser(new WifiInfoParser(view.data()));
     QScopedPointer<WpaCliHelper> wpaCliHelper(new WpaCliHelper(view.data()));
 
+    view->rootContext()->setContextProperty("wifiInfoParser", wifiInfoParser.data());
     view->rootContext()->setContextProperty("wpaCliHelper", wpaCliHelper.data());
     view->setSource(SailfishApp::pathTo("qml/harbour-wifianalyser.qml"));
     view->show();

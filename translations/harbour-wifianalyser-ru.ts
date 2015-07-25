@@ -61,17 +61,17 @@
 <context>
     <name>GraphPage</name>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="228"/>
+        <location filename="../qml/pages/GraphPage.qml" line="161"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="233"/>
+        <location filename="../qml/pages/GraphPage.qml" line="166"/>
         <source>Set password</source>
         <translation>Указать пароль</translation>
     </message>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="241"/>
+        <location filename="../qml/pages/GraphPage.qml" line="174"/>
         <source>List view</source>
         <translation type="unfinished"></translation>
     </message>
