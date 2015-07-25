@@ -77,7 +77,7 @@ Page {
         var left
         var right
 
-        switch (channel) {
+        switch (parseInt(channel)) {
         case 0:
             left = 0
             right = 22 * step
@@ -261,9 +261,9 @@ Page {
                     ctx.fillStyle = fillColors[networkIndex % fillColors.length]
 
                     var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
-                    var bounds = calculateBoundsPositionForChannel(width, mWifiInfo[0])
+                    var bounds = calculateBoundsPositionForChannel(width, mWifiInfo[networkIndex][0])
 
-                    var cpX = 2*(channels[mWifiInfo[0]]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
+                    var cpX = 2*(channels[mWifiInfo[networkIndex][0]]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
                     var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2
 
                     ctx.beginPath()
@@ -275,7 +275,7 @@ Page {
 
                     ctx.fillStyle = ctx.strokeStyle
                     var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
-                    ctx.fillText(mWifiInfo[networkIndex][2], channels[mWifiInfo[0]]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
+                    ctx.fillText(mWifiInfo[networkIndex][2], channels[mWifiInfo[networkIndex][0]]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
                 }
             }
         }
@@ -283,7 +283,6 @@ Page {
 
     Connections {
         target: wpaCliHelper
-//        onCalledWpaCli: parseWpaCliOutput(wpaCliHelper.getWifiInfo())
         onCalledWpaCli: wifiInfoParser.parseInfo(wpaCliHelper.getWifiInfo())
         onGotAuthError: console.log("onGotAuthError")
         onGotResultError: console.log("onGotResultError")
