@@ -24,7 +24,8 @@ void WifiInfoParser::parseInfo(QString info) {
         wifiInfo << QVariant::fromValue(
                         (QStringList() << QString::number(calculateChannel(data[1].toInt()))
                                        << data[2]
-                                       << data[4]));
+                                       << data[4]
+                                       << data[0]));
     }
     emit parsed(PARSE_COMPLETED_CORRECTLY);
 }

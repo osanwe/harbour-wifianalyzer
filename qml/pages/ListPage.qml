@@ -88,6 +88,12 @@ Page {
                     }
                 }
 
+                Label {
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
+                    text: "bssid: " + bssid
+                }
+
                 ProgressBar {
                     width: parent.width
                     minimumValue: -100
@@ -116,7 +122,8 @@ Page {
                 for (var network in networks) {
                     wifiInfoList.model.append({ channel: parseInt(networks[network][0]) + 1,
                                                 level:   networks[network][1],
-                                                name:    networks[network][2] })
+                                                name:    networks[network][2],
+                                                bssid:   networks[network][3]})
                 }
 
                 break
