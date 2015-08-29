@@ -72,6 +72,7 @@ Page {
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignLeft
+                        font.bold: true
                         text: name
                     }
 
