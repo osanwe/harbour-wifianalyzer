@@ -59,22 +59,22 @@
     </message>
     <message>
         <source>List view</source>
-        <translation type="unfinished"></translation>
+        <translation>Listvy</translation>
     </message>
 </context>
 <context>
     <name>ListPage</name>
     <message>
         <source>Graph view</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagramvy</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished">Om</translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>Set password</source>
-        <translation type="unfinished">Ange lösenord</translation>
+        <translation>Ange lösenord</translation>
     </message>
 </context>
 <context>
