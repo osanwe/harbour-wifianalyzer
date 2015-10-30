@@ -22,13 +22,30 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-
 Page {
     id: graphPage
+
     allowedOrientations: Orientation.All
+
+    /**
+     * The method forms the list view with WiFi-networks info.
+     * @param networks - the array with WiFi-networks info
+     */
+    function formWifiInfoList(networks) {
+        console.log('formWifiInfoList(' + networks + ')');
+        wifiInfoList.model.clear();
+        for (var index in networks) {
+            var wifiInfo = { channel: parseInt(networks[index][0]) + 1,
+                             level:   networks[index][1],
+                             name:    networks[index][2],
+                             bssid:   networks[index][3] };
+            wifiInfoList.model.append(wifiInfo);
+        }
+    }
 
     SilicaListView {
         id: wifiInfoList
+
         anchors.fill: parent
 
         PullDownMenu {
@@ -55,19 +72,19 @@ Page {
         model: ListModel {}
 
         delegate: Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.leftMargin: Theme.paddingLarge
-            anchors.rightMargin: Theme.paddingLarge
-            height: Theme.itemSizeMedium
+            width: parent.width
+            height: Theme.itemSizeHuge
 
             Column {
                 anchors.fill: parent
                 anchors.topMargin: Theme.paddingLarge
                 anchors.bottomMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.paddingLarge
+                anchors.leftMargin: Theme.paddingLarge
 
                 Row {
-                    width: parent.width
+                    anchors.right: parent.right
+                    anchors.left: parent.left
 
                     Label {
                         width: parent.width / 3
@@ -115,20 +132,6 @@ Page {
 
     Connections {
         target: wifiInfoParser
-        onParsed: {
-            wifiInfoList.model.clear()
-            switch (exitCode) {
-            case 0:
-                var networks = wifiInfoParser.getWifiInfo()
-                for (var network in networks) {
-                    wifiInfoList.model.append({ channel: parseInt(networks[network][0]) + 1,
-                                                level:   networks[network][1],
-                                                name:    networks[network][2],
-                                                bssid:   networks[network][3]})
-                }
-
-                break
-            }
-        }
+        onParsed: if (exitCode === 0) formWifiInfoList(wifiInfoParser.getWifiInfo())
     }
 }
