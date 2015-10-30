@@ -21,19 +21,24 @@
 
 #include "wpaclihelper.h"
 
-#include <stdio.h>
-
 WpaCliHelper::WpaCliHelper(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << "WpaCliHelper()";
 }
 
-WpaCliHelper::~WpaCliHelper()
-{
+WpaCliHelper::~WpaCliHelper() {
+    qDebug() << "~WpaCliHelper()";
 }
 
 
+/**
+ * The method calls wpa_cli with devel-su password.
+ * @param password - devel-su password
+ */
 void WpaCliHelper::callWpaCli(QString password) {
+    qDebug() << QString("callWpaCli(%1)").arg(password);
+
     QProcess process;
 
     process.start(QString("/bin/bash -c \"echo %1 | devel-su wpa_cli scan\"").arg((password)));
@@ -58,6 +63,11 @@ void WpaCliHelper::callWpaCli(QString password) {
     emit calledWpaCli();
 }
 
+/**
+ * The method returns received wifi info.
+ * @return Info about WiFi-networks
+ */
 QString WpaCliHelper::getWifiInfo() {
+    qDebug() << "getWifiInfo()";
     return mWifiInfo;
 }

@@ -1,6 +1,7 @@
 #ifndef WIFIINFOPARSER_H
 #define WIFIINFOPARSER_H
 
+#include <QDebug>
 #include <QList>
 #include <QObject>
 #include <QStringList>

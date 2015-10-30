@@ -79,17 +79,17 @@
 <context>
     <name>ListPage</name>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="49"/>
+        <location filename="../qml/pages/ListPage.qml" line="54"/>
         <source>About</source>
         <translation type="unfinished">О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="54"/>
+        <location filename="../qml/pages/ListPage.qml" line="59"/>
         <source>Set password</source>
         <translation type="unfinished">Указать пароль</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="62"/>
+        <location filename="../qml/pages/ListPage.qml" line="67"/>
         <source>Graph view</source>
         <translation type="unfinished"></translation>
     </message>

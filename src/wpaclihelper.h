@@ -22,6 +22,8 @@
 #ifndef WPACLIHELPER_H
 #define WPACLIHELPER_H
 
+#include <stdio.h>
+#include <QDebug>
 #include <QObject>
 #include <QProcess>
 
