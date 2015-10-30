@@ -22,7 +22,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-
 Dialog {
     id: passwordPage
 
@@ -37,19 +36,17 @@ Dialog {
         }
 
         Label {
+            x: Theme.horizontalPageMargin
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.leftMargin: Theme.paddingLarge
-            anchors.rightMargin: Theme.paddingLarge
             text: qsTr("Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting. Your devel-su password is required for starting `wpa_cli` util.")
             wrapMode: Text.Wrap
         }
 
         Row {
+            x: Theme.horizontalPageMargin
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.leftMargin: Theme.paddingLarge
-            anchors.rightMargin: Theme.paddingLarge
 
             TextField {
                 id: passwordField
@@ -70,8 +67,3 @@ Dialog {
 
     onAccepted: rootApp.password = passwordField.text
 }
-
-
-
-
-

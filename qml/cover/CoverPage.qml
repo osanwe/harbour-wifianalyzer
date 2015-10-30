@@ -74,15 +74,13 @@ CoverBackground {
         target: wpaCliHelper
         onCalledWpaCli: calculateWifiNetworksCount(wpaCliHelper.getWifiInfo())
         onGotAuthError: {
-            infoColumn.visible = false
-            errorMessage.visible = true
-            errorMessage.text = qsTr("Please, type correct password")
-            rootApp.oldPassword = rootApp.password
-            console.log("onGotAuthError")
+            infoColumn.visible = false;
+            errorMessage.visible = true;
+            errorMessage.text = qsTr("Please, type correct password");
+            rootApp.oldPassword = rootApp.password;
+            console.log("onGotAuthError");
         }
         onGotResultError: console.log("onGotResultError")
         onGotScanError: console.log("onGotScanError")
     }
 }
-
-

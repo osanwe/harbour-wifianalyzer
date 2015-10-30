@@ -35,8 +35,8 @@
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="43"/>
-        <source>WiFi Analyzer v1.2.0</source>
-        <translation>WiFi Analyzer v1.2.0</translation>
+        <source>WiFi Analyzer v1.2.1</source>
+        <translation type="unfinished">WiFi Analyzer v1.2.1</translation>
     </message>
 </context>
 <context>
@@ -61,17 +61,17 @@
 <context>
     <name>GraphPage</name>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="161"/>
+        <location filename="../qml/pages/GraphPage.qml" line="316"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="166"/>
+        <location filename="../qml/pages/GraphPage.qml" line="321"/>
         <source>Set password</source>
         <translation>Указать пароль</translation>
     </message>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="174"/>
+        <location filename="../qml/pages/GraphPage.qml" line="329"/>
         <source>List view</source>
         <translation type="unfinished"></translation>
     </message>
@@ -97,27 +97,27 @@
 <context>
     <name>PasswordPage</name>
     <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="35"/>
+        <location filename="../qml/pages/PasswordPage.qml" line="34"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="36"/>
+        <location filename="../qml/pages/PasswordPage.qml" line="35"/>
         <source>Cancel</source>
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="44"/>
+        <location filename="../qml/pages/PasswordPage.qml" line="42"/>
         <source>Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting. Your devel-su password is required for starting `wpa_cli` util.</source>
         <translation>Ваш пароль devel-su будет сохранен только на текущую сессию. Вы должны его вводить после каждого запуска программы. Пароль devel-su требуется для запуска утилиты `wpa_cli`.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="57"/>
+        <location filename="../qml/pages/PasswordPage.qml" line="54"/>
         <source>Type devel-su password:</source>
         <translation>Введите пароль devel-su:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="58"/>
+        <location filename="../qml/pages/PasswordPage.qml" line="55"/>
         <source>Your devel-su password</source>
         <translation>Ваш пароль devel-su</translation>
     </message>

@@ -22,134 +22,289 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-
 Page {
     id: graphPage
+
     allowedOrientations: Orientation.All
 
     property variant mWifiInfo: []
+    property variant channelsInfo: [11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 83]
 
+    property var strokeColors: ["rgb(255,   0,   0)",
+                                "rgb(128, 128,   0)",
+                                "rgb(255, 255,   0)",
+                                "rgb(  0, 128,   0)",
+                                "rgb(  0, 255,   0)",
+                                "rgb(  0, 128, 128)",
+                                "rgb(  0, 255, 255)",
+                                "rgb(  0,   0, 128)",
+                                "rgb(  0,   0, 255)",
+                                "rgb(128,   0, 128)",
+                                "rgb(255,   0, 255)",
+                                "rgb(128,   0,   0)"]
+    property var fillColors: ["rgba(255,   0,   0, 0.33)",
+                              "rgba(128, 128,   0, 0.33)",
+                              "rgba(255, 255,   0, 0.33)",
+                              "rgba(  0, 128,   0, 0.33)",
+                              "rgba(  0, 255,   0, 0.33)",
+                              "rgba(  0, 128, 128, 0.33)",
+                              "rgba(  0, 255, 255, 0.33)",
+                              "rgba(  0,   0, 128, 0.33)",
+                              "rgba(  0,   0, 255, 0.33)",
+                              "rgba(128,   0, 128, 0.33)",
+                              "rgba(255,   0, 255, 0.33)",
+                              "rgba(128,   0,   0, 0.33)"]
+
+    /**
+     * The method calculates coordinates for channels axes.
+     * @param width - the width of the device screen
+     * #return The array of channels exes coordinates
+     */
     function calculateChannelsPositions(width) {
-        var step = width / 94
-
-        var channels = []
-        channels[0]  = (11 * step)
-        channels[1]  = (16 * step)
-        channels[2]  = (21 * step)
-        channels[3]  = (26 * step)
-        channels[4]  = (31 * step)
-        channels[5]  = (36 * step)
-        channels[6]  = (41 * step)
-        channels[7]  = (46 * step)
-        channels[8]  = (51 * step)
-        channels[9]  = (56 * step)
-        channels[10] = (61 * step)
-        channels[11] = (66 * step)
-        channels[12] = (71 * step)
-        channels[13] = (83 * step)
-
-        return channels
+        console.log('calculateChannelsPositions(' + width + ')');
+        var channels = [];
+        var step = width / 94;
+        for (var index in channelsInfo) channels[index] = channelsInfo[index] * step;
+        return channels;
     }
 
+    /**
+     * The method calculates coordinates for signal level axes.
+     * @param height - the height of the screen
+     * @return The array of signal levels axes coordinates
+     */
     function calculateSignalLevelsPositions(height) {
-        var step = height / 10
-
-        var levels = []
-        levels[0] = step + Theme.paddingLarge
-        levels[1] = (2 * step) + Theme.paddingLarge
-        levels[2] = (3 * step) + Theme.paddingLarge
-        levels[3] = (4 * step) + Theme.paddingLarge
-        levels[4] = (5 * step) + Theme.paddingLarge
-        levels[5] = (6 * step) + Theme.paddingLarge
-        levels[6] = (7 * step) + Theme.paddingLarge
-        levels[7] = (8 * step) + Theme.paddingLarge
-        levels[8] = (9 * step) + Theme.paddingLarge
-
-        return levels
+        console.log('calculateSignalLevelsPositions(' + height + ')');
+        var levels = [];
+        var step = height / 10;
+        for (var index = 0; index < 10; index += 1) levels[index] = index * step + Theme.paddingLarge;
+        return levels;
     }
 
+    /**
+     * The method calculates Y-coordinate for signal level.
+     * @param height - the height of the screen
+     * @param level - the signal level of the WiFi-network
+     */
     function calculateCurrentSignalLevelPosition(height, level) {
-        return height / 100 * Math.abs(level)
+        console.log('calculateCurrentSignalLevelPosition(' + height + ', ' + level + ')');
+        return height / 100 * Math.abs(level);
     }
 
+    /**
+     * The method calculates X-coordinates of WiFi-signal bounds.
+     * @param width - the width of the screen
+     * @param channel - the number of the channel
+     * @return The array with X-coordinates of left and right bounds of the WiFi-signal
+     */
     function calculateBoundsPositionForChannel(width, channel) {
-        var step = width / 94
-        var left
-        var right
+        console.log('calculateBoundsPositionForChannel(' + width + ', ' + channel + ')');
+        var step = width / 94;
+        var left = (channelsInfo[channel] - 11) * step;
+        var right = (channelsInfo[channel] + 11) * step;
+        return [left, right];
+    }
 
-        switch (parseInt(channel)) {
-        case 0:
-            left = 0
-            right = 22 * step
-            break
+    /**
+     * The method draws bounds of the graph view.
+     * @param context - context for drawing
+     */
+    function drawGraphBounds(context) {
+        console.log('drawGraphBounds(' + context + ')');
+        context.beginPath();
+        context.moveTo(2.5 * Theme.paddingLarge, Theme.paddingLarge);
+        context.lineTo(graph.width - Theme.paddingLarge, Theme.paddingLarge);
+        context.lineTo(graph.width - Theme.paddingLarge, graph.height - (2 * Theme.paddingLarge));
+        context.lineTo(2.5 * Theme.paddingLarge, graph.height-(2 * Theme.paddingLarge));
+        context.closePath();
+        context.stroke();
+    }
 
-        case 1:
-            left = 3 * step
-            right = 27 * step
-            break
+    /**
+     * The method draws axe for a separate channel.
+     * @param context - context for drawing
+     * @param channelCoord - X-coordinate of the current channel
+     */
+    function drawChannelAxe(context, channelCoord) {
+        console.log('drawChannelAxe(' + context + ', ' + channelCoord + ')');
+        context.beginPath();
+        context.moveTo(channelCoord + (2.5 * Theme.paddingLarge), Theme.paddingLarge);
+        context.lineTo(channelCoord + (2.5 * Theme.paddingLarge), graph.height - (2 * Theme.paddingLarge));
+        context.closePath();
+        context.stroke();
+    }
 
-        case 2:
-            left = 10 * step
-            right = 32 * step
-            break
+    /**
+     * The method draws a number of the channel.
+     * @param context - context for drawing
+     * @param channelIndex - an index of the channel
+     * @param channelCoord - X-coordinate of the current channel
+     */
+    function drawChannelNumber(context, channelIndex, channelCoord) {
+        console.log('drawChannelNumber(' + context + ', ' + channelIndex + ', ' + channelCoord + ')');
+        var text = parseInt(channelIndex) + 1;
+        var textWidth = context.measureText(text).width;
+        context.fillText(text, channelCoord + (2.5 * Theme.paddingLarge) - (textWidth / 2),
+                         graph.height - Theme.paddingLarge);
+    }
 
-        case 3:
-            left = 15 * step
-            right = 37 * step
-            break
-
-        case 4:
-            left = 20 * step
-            right = 42 * step
-            break
-
-        case 5:
-            left = 25 * step
-            right = 47 * step
-            break
-
-        case 6:
-            left = 30 * step
-            right = 52 * step
-            break
-
-        case 7:
-            left = 35 * step
-            right = 57 * step
-            break
-
-        case 8:
-            left = 40 * step
-            right = 62 * step
-            break
-
-        case 9:
-            left = 50 * step
-            right = 67 * step
-            break
-
-        case 10:
-            left = 50 * step
-            right = 72 * step
-            break
-
-        case 11:
-            left = 55 * step
-            right = 77 * step
-            break
-
-        case 12:
-            left = 60 * step
-            right = 82 * step
-            break
-
-        case 13:
-            left = 72 * step
-            right = 94 * step
-            break
+    /**
+     * The method draws channels axes.
+     * @param context - context for drawing
+     * @param levels - the array of signal levels coordinates
+     */
+    function drawChannelsAxes(context, channels) {
+        console.log('drawChannelsAxes(' + context + ', ' + channels + ')');
+        context.lineWidth = 1;
+        for (var channelIndex in channels) {
+            drawChannelAxe(context, channels[channelIndex]);
+            drawChannelNumber(context, channelIndex, channels[channelIndex]);
         }
+    }
 
-        return [left, right]
+    /**
+     * The method draws axe for a separate channel.
+     * @param context - context for drawing
+     * @param signalLevelCoord - Y-coordinate of the current signal level
+     */
+    function drawSignalLevelAxe(context, signalLevelCoord) {
+        console.log('drawSignalLevelAxe(' + context + ', ' + signalLevelCoord + ')');
+        context.beginPath();
+        context.moveTo(2.5 * Theme.paddingLarge, signalLevelCoord);
+        context.lineTo(graph.width - Theme.paddingLarge, signalLevelCoord);
+        context.closePath();
+        context.stroke();
+    }
+
+    /**
+     * The method draws a number of the channel.
+     * @param context - context for drawing
+     * @param signal level - an index of the current signal level
+     * @param signalLevelCoord - Y-coordinate of the current signal level
+     */
+    function drawSignalLevel(context, signalLevel, signalLevelCoord) {
+        console.log('drawSignalLevel(' + context + ', ' + signalLevel + ', ' + signalLevelCoord + ')');
+        if (signalLevel === '0') return;
+        context.fillText('-' + signalLevel + '0', Theme.paddingLarge, signalLevelCoord);
+    }
+
+    /**
+     * The method draws signal levels axes.
+     * @param context - context for drawing
+     * @param levels - the array of signal levels coordinates
+     */
+    function drawSignalLevelsAxes(context, levels) {
+        console.log('drawSignalLevelsAxes(' + context + ', ' + levels + ')');
+        for (var levelIndex in levels) {
+            drawSignalLevelAxe(context, levels[levelIndex]);
+            drawSignalLevel(context, levelIndex, levels[levelIndex]);
+        }
+    }
+
+    /**
+     * The method draws graph axes.
+     * @param context - context for drawing
+     * @param channels - the array of channels coordinates
+     * @param levels - the array of signal levels coordinates
+     */
+    function drawAxes(context, channels, levels) {
+        console.log('drawAxes(' + context + ', ' + channels + ', ' + levels + ')');
+        drawGraphBounds(context);
+        drawChannelsAxes(context, channels);
+        drawSignalLevelsAxes(context, levels);
+    }
+
+    /**
+     * The method calculates a current point for the bezier curve.
+     * @param channelCoord - X-coordinate of the current channel
+     * @param levelPosition - Y-coordinate of the current signal level
+     * @param bounds - bounds of the current bezier curve
+     * @return The current point coordinates
+     */
+    function calculateCurrentPoint(channelCoord, levelPosition, bounds) {
+        console.log('calculateCurrentPoint(' + channelCoord + ', ' + levelPosition + ', ' + bounds + ')');
+        var cpx = 2 * (channelCoord + (2.5 * Theme.paddingLarge)) -
+                (bounds[0] + (2.5 * Theme.paddingLarge)) / 2 - (bounds[1] + (2.5 * Theme.paddingLarge)) / 2;
+        var cpy = 2 * (levelPosition + Theme.paddingLarge) -
+                (parent.height - (2 * Theme.paddingLarge)) / 2 - (parent.height - (2 * Theme.paddingLarge)) / 2;
+        return { x: cpx, y: cpy };
+    }
+
+    /**
+     * The method draws the bezier curve for current WiFi-network.
+     * @param context - context for drawing
+     * @param channelCoord - X-coordinate for current channel
+     * @param levelPosition - Y-coordinate for current signal level
+     * @param bounds - bounds of the current bezier curve
+     */
+    function drawWifiFigure(context, channelCoord, levelPosition, bounds) {
+        console.log('drawWifiFigure(' + context + ', ' + channelCoord + ', ' + levelPosition + ', ' + bounds + ')');
+        var cp = calculateCurrentPoint(channelCoord, levelPosition, bounds);
+        context.beginPath();
+        context.moveTo(bounds[0] + (2.5 * Theme.paddingLarge),
+                       parent.height - (2 * Theme.paddingLarge));
+        context.quadraticCurveTo(cp.x, cp.y, bounds[1] + (2.5 * Theme.paddingLarge),
+                                 parent.height - (2 * Theme.paddingLarge));
+        context.closePath();
+        context.stroke();
+        context.fill();
+    }
+
+    /**
+     * The method draws the current WiFi-network method.
+     * @param context - context for drawing
+     * @param wifiInfo - information about current WiFi-network
+     * @param channels - the array of channelscoordinates
+     * @param levelPosition - Y-coordinate of current signal level
+     */
+    function drawWifiName(context, wifiInfo, channels, levelPosition) {
+        console.log('drawWifiName(' + context + ', ' + wifiInfo + ', ' + channels + ', ' + levelPosition + ')');
+        var textWidth = context.measureText(wifiInfo[2]).width;
+        context.fillText(wifiInfo[2],
+                         channels[wifiInfo[0]] + (2.5 * Theme.paddingLarge) - (textWidth / 2),
+                         levelPosition + Theme.paddingLarge);
+    }
+
+    /**
+     * The method draws a figure for each WiFi-network.
+     * @param context - context for drawing.
+     * @param channels - the array of channels coordinates
+     */
+    function drawWifiFigures(context, width, height, channels) {
+        console.log('drawWifiFigures(' + context + ', ' + width + ', ' + height + ', ' + channels + ')');
+        context.lineWidth = 2;
+        for (var networkIndex in mWifiInfo) {
+            var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
+            var bounds = calculateBoundsPositionForChannel(width, mWifiInfo[networkIndex][0])
+            context.strokeStyle = strokeColors[networkIndex % strokeColors.length];
+            context.fillStyle = fillColors[networkIndex % fillColors.length];
+            drawWifiFigure(context, channels[mWifiInfo[networkIndex][0]], levelPosition, bounds);
+            context.fillStyle = context.strokeStyle;
+            drawWifiName(context, mWifiInfo[networkIndex], channels, levelPosition);
+        }
+    }
+
+    /**
+     * The method draw axes and graph view of WiFi-networks.
+     * @param width - the width of the screen
+     * @param height - the height of the screen
+     */
+    function drawGraph(width, height) {
+        console.log('drawGraph(' + width + ', ' + height + ')');
+
+        var context = graph.getContext("2d");
+        context.clearRect(0, 0, parent.width, parent.height);
+        context.lineWidth = 3;
+        context.strokeStyle = "gray";
+        context.fillStyle = "gray";
+        context.font = "12pt sans-serif";
+
+        var channels = calculateChannelsPositions(width);
+        var levels = calculateSignalLevelsPositions(height)
+        drawAxes(context, channels, levels);
+
+        if (mWifiInfo.length === 0) return;
+        drawWifiFigures(context, width, height, channels);
     }
 
     SilicaFlickable {
@@ -180,104 +335,8 @@ Page {
             id: graph
             anchors.fill: parent
 
-            onPaint: {
-                var width = parent.width - (4.5 * Theme.paddingLarge)
-                var height = parent.height - (3 * Theme.paddingLarge)
-
-                var ctx = graph.getContext("2d")
-                ctx.clearRect(0, 0, parent.width, parent.height)
-
-                ctx.lineWidth = 3
-                ctx.strokeStyle = "gray"
-                ctx.fillStyle = "gray"
-                ctx.font = "12pt sans-serif"
-
-                ctx.beginPath()
-                ctx.moveTo(2.5*Theme.paddingLarge, Theme.paddingLarge)
-                ctx.lineTo(parent.width-Theme.paddingLarge, Theme.paddingLarge)
-                ctx.lineTo(parent.width-Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
-                ctx.lineTo(2.5*Theme.paddingLarge, parent.height-(2*Theme.paddingLarge))
-                ctx.closePath()
-                ctx.stroke()
-
-                ctx.lineWidth = 1
-                var currChannel = 1
-                var channels = calculateChannelsPositions(width)
-                for (var channelIndex in channels) {
-                    ctx.beginPath()
-                    ctx.moveTo(channels[channelIndex]+(2.5*Theme.paddingLarge), Theme.paddingLarge)
-                    ctx.lineTo(channels[channelIndex]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                    ctx.closePath()
-                    ctx.stroke()
-
-                    var textWidth = ctx.measureText(currChannel).width
-                    ctx.fillText(currChannel, channels[channelIndex]+(2.5*Theme.paddingLarge)-(textWidth/2), parent.height-Theme.paddingLarge)
-                    currChannel += 1
-                }
-
-                var currLevel = 10
-                var levels = calculateSignalLevelsPositions(height)
-                for (var levelsIndex in levels) {
-                    ctx.beginPath()
-                    ctx.moveTo(2.5*Theme.paddingLarge, levels[levelsIndex])
-                    ctx.lineTo(parent.width-Theme.paddingLarge, levels[levelsIndex])
-                    ctx.closePath()
-                    ctx.stroke()
-
-                    ctx.fillText("-"+currLevel, Theme.paddingLarge, levels[levelsIndex])
-                    currLevel += 10
-                }
-
-                if (mWifiInfo.length === 0) return
-
-                var strokeColors = ["rgb(255,   0,   0)",
-                                    "rgb(128, 128,   0)",
-                                    "rgb(255, 255,   0)",
-                                    "rgb(  0, 128,   0)",
-                                    "rgb(  0, 255,   0)",
-                                    "rgb(  0, 128, 128)",
-                                    "rgb(  0, 255, 255)",
-                                    "rgb(  0,   0, 128)",
-                                    "rgb(  0,   0, 255)",
-                                    "rgb(128,   0, 128)",
-                                    "rgb(255,   0, 255)",
-                                    "rgb(128,   0,   0)"]
-                var fillColors = ["rgba(255,   0,   0, 0.33)",
-                                  "rgba(128, 128,   0, 0.33)",
-                                  "rgba(255, 255,   0, 0.33)",
-                                  "rgba(  0, 128,   0, 0.33)",
-                                  "rgba(  0, 255,   0, 0.33)",
-                                  "rgba(  0, 128, 128, 0.33)",
-                                  "rgba(  0, 255, 255, 0.33)",
-                                  "rgba(  0,   0, 128, 0.33)",
-                                  "rgba(  0,   0, 255, 0.33)",
-                                  "rgba(128,   0, 128, 0.33)",
-                                  "rgba(255,   0, 255, 0.33)",
-                                  "rgba(128,   0,   0, 0.33)"]
-
-                ctx.lineWidth = 2
-                for (var networkIndex in mWifiInfo) {
-                    ctx.strokeStyle = strokeColors[networkIndex % strokeColors.length]
-                    ctx.fillStyle = fillColors[networkIndex % fillColors.length]
-
-                    var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
-                    var bounds = calculateBoundsPositionForChannel(width, mWifiInfo[networkIndex][0])
-
-                    var cpX = 2*(channels[mWifiInfo[networkIndex][0]]+(2.5*Theme.paddingLarge)) - (bounds[0]+(2.5*Theme.paddingLarge))/2 - (bounds[1]+(2.5*Theme.paddingLarge))/2
-                    var cpY = 2*(levelPosition+Theme.paddingLarge) - (parent.height-(2*Theme.paddingLarge))/2 - (parent.height-(2*Theme.paddingLarge))/2
-
-                    ctx.beginPath()
-                    ctx.moveTo(bounds[0]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                    ctx.quadraticCurveTo(cpX, cpY, bounds[1]+(2.5*Theme.paddingLarge), parent.height-(2*Theme.paddingLarge))
-                    ctx.closePath()
-                    ctx.stroke()
-                    ctx.fill()
-
-                    ctx.fillStyle = ctx.strokeStyle
-                    var textWidth = ctx.measureText(mWifiInfo[networkIndex][2]).width
-                    ctx.fillText(mWifiInfo[networkIndex][2], channels[mWifiInfo[networkIndex][0]]+(2.5*Theme.paddingLarge)-(textWidth/2), levelPosition+Theme.paddingLarge)
-                }
-            }
+            onPaint: drawGraph(parent.width - (4.5 * Theme.paddingLarge),
+                               parent.height - (3 * Theme.paddingLarge))
         }
     }
 
@@ -292,18 +351,11 @@ Page {
     Connections {
         target: wifiInfoParser
         onParsed: {
-            mWifiInfo = []
-            switch (exitCode) {
-            case 0:
-                mWifiInfo = wifiInfoParser.getWifiInfo()
-                break
-            }
-            console.log(mWifiInfo)
-            graph.requestPaint()
+            mWifiInfo = [];
+            if (exitCode === 0) mWifiInfo = wifiInfoParser.getWifiInfo();
+            graph.requestPaint();
         }
     }
 
     onOrientationChanged: graph.requestPaint()
 }
-
-

@@ -40,13 +40,13 @@ Page {
         model: aboutPage.model
 
         header: PageHeader {
-            title: qsTr("WiFi Analyzer v1.2.0")
+            title: qsTr("WiFi Analyzer v1.2.1")
         }
 
         delegate: Item {
             anchors.horizontalCenter: parent.horizontalCenter
-            height: aboutItem.height + Theme.paddingMedium
             width: parent.width - Theme.paddingLarge * 2
+            height: aboutItem.height + Theme.paddingMedium
 
             property var item: model.modelData ? model.modelData : model
 

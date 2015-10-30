@@ -21,14 +21,14 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+
 import "pages"
 
-ApplicationWindow
-{
+ApplicationWindow {
     id: rootApp
 
     property string password: ""
-    property string oldPassword: "sdh"
+    property string oldPassword: ""
 
     initialPage: Component { GraphPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
@@ -38,13 +38,12 @@ ApplicationWindow
         interval: 2000
         running: true
         repeat: true
+        triggeredOnStart: true
 
         onTriggered: {
-            if (password.length > 0 && password !== oldPassword) wpaCliHelper.callWpaCli(password)
+            if (password.length > 0 && password !== oldPassword) wpaCliHelper.callWpaCli(password);
         }
     }
 
     Component.onCompleted: pageStack.push(Qt.resolvedUrl("pages/PasswordPage.qml"))
 }
-
-
