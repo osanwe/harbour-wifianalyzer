@@ -28,8 +28,8 @@
         <translation>&lt;a href=&quot;https://flattr.com/submit/auto?user_id=osanwe&amp;url=https://github.com/osanwe/harbour-wifianalyzer&amp;title=WiFi%20Analyzer&quot;&gt;Flattr&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>WiFi Analyzer v1.2.1</source>
-        <translation type="unfinished">WiFi Analyzer v1.2.1</translation>
+        <source>WiFi Analyzer v1.2.2</source>
+        <translation type="unfinished">WiFi Analyzer v1.2.2</translation>
     </message>
 </context>
 <context>

@@ -13,10 +13,10 @@ Name:       harbour-wifianalyser
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    The simple tool for WiFi networks analyzing distributed under the terms of the GNU GPLv3.
-Version:    1.2.1
-Release:    6
+Version:    1.2.2
+Release:    7
 Group:      Qt/Qt
-License:    LICENSE
+License:    GNU GPLv3
 URL:        https://github.com/osanwe/harbour-wifianalyzer
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-wifianalyser.yaml
