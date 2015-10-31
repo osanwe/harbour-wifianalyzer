@@ -273,7 +273,7 @@ Page {
         console.log('drawWifiFigures(' + context + ', ' + width + ', ' + height + ', ' + channels + ')');
         context.lineWidth = 2;
         for (var networkIndex = 0; networkIndex < networksList.count; ++networkIndex) {
-            var levelPosition = calculateCurrentSignalLevelPosition(height, (networksList.get(networkIndex).strength - 100))
+            var levelPosition = calculateCurrentSignalLevelPosition(height, (networksList.get(networkIndex).strength - 120))
             var bounds = calculateBoundsPositionForChannel(width, calculateChannel(networksList.get(networkIndex).frequency))
             context.strokeStyle = strokeColors[networkIndex % strokeColors.length];
             context.fillStyle = fillColors[networkIndex % fillColors.length];

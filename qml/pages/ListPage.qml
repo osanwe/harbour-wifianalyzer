@@ -86,7 +86,7 @@ Page {
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignRight
-                        text: (modelData.strength - 100) + " dB"
+                        text: (modelData.strength - 120) + " dB"
                     }
                 }
 
