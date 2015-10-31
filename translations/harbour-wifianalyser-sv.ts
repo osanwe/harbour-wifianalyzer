@@ -42,10 +42,6 @@
         <source>WiFi networks</source>
         <translation>WiFi-nätverk</translation>
     </message>
-    <message>
-        <source>Please, type correct password</source>
-        <translation>Ange korrekt lösenord</translation>
-    </message>
 </context>
 <context>
     <name>GraphPage</name>

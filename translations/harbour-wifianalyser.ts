@@ -42,10 +42,6 @@
         <source>WiFi networks</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Please, type correct password</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>GraphPage</name>

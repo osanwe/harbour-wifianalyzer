@@ -24,33 +24,16 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
-    function calculateWifiNetworksCount(output) {
-        var wifiNetworksCount = output.split('\n').length - 3
-        switch (wifiNetworksCount) {
-        case -2:
-            infoColumn.visible = false
-            errorMessage.visible = true
-            errorMessage.text = qsTr("Please, turn WiFi on")
-            return
-
-        default:
-            infoColumn.visible = true
-            errorMessage.visible = false
-            wifiCounter.text = wifiNetworksCount
-            return
-        }
-    }
-
     Column {
         id: infoColumn
         anchors.centerIn: parent
-        visible: false
+        visible: networksList.powered
 
         Label {
             id: wifiCounter
             font.bold: true
             font.pixelSize: Theme.fontSizeHuge
-            text: "0"
+            text: networksList.count
         }
 
         Label {
@@ -66,21 +49,7 @@ CoverBackground {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         wrapMode: Text.Wrap
-        visible: true
-        text: qsTr("Please, type correct password")
-    }
-
-    Connections {
-        target: wpaCliHelper
-        onCalledWpaCli: calculateWifiNetworksCount(wpaCliHelper.getWifiInfo())
-        onGotAuthError: {
-            infoColumn.visible = false;
-            errorMessage.visible = true;
-            errorMessage.text = qsTr("Please, type correct password");
-            rootApp.oldPassword = rootApp.password;
-            console.log("onGotAuthError");
-        }
-        onGotResultError: console.log("onGotResultError")
-        onGotScanError: console.log("onGotScanError")
+        visible: !networksList.powered
+        text: qsTr("Please, turn WiFi on")
     }
 }
