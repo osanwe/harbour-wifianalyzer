@@ -69,6 +69,9 @@ ApplicationWindow {
         onTriggered: networksList.requestScan()
     }
 
+    // More info:
+    // https://git.merproject.org/mer-core/libconnman-qt/blob/master/plugin/technologymodel.h
+    // https://git.merproject.org/mer-core/libconnman-qt/blob/master/libconnman-qt/networkservice.h
     TechnologyModel {
         id: networksList
         name: "wifi"

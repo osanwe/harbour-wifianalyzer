@@ -28,7 +28,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>WiFi Analyzer v1.2.2</source>
+        <source>WiFi Analyzer v2.0.0</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
