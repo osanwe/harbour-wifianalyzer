@@ -53,6 +53,10 @@
         <source>List view</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please, turn WiFi on</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -62,6 +66,10 @@
     </message>
     <message>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please, turn WiFi on</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

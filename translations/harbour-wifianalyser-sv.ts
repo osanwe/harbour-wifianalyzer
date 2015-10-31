@@ -53,6 +53,10 @@
         <source>List view</source>
         <translation>Listvy</translation>
     </message>
+    <message>
+        <source>Please, turn WiFi on</source>
+        <translation type="unfinished">Du måste aktivera WiFi</translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -63,6 +67,10 @@
     <message>
         <source>About</source>
         <translation>Om</translation>
+    </message>
+    <message>
+        <source>Please, turn WiFi on</source>
+        <translation type="unfinished">Du måste aktivera WiFi</translation>
     </message>
 </context>
 </TS>
