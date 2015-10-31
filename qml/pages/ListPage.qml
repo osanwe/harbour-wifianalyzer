@@ -27,6 +27,11 @@ Page {
 
     allowedOrientations: Orientation.All
 
+    /**
+     * The method calculates the WiFi-network channel.
+     * @param frequency - the frecuency of current WiFi-network
+     * @return The channel number of current WiFi-network
+     */
     function calculateChannel(frequency) {
         switch (frequency) {
         case 2412: return 0;

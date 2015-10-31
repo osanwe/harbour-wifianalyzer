@@ -27,7 +27,6 @@ Page {
 
     allowedOrientations: Orientation.All
 
-    property variant mWifiInfo: []
     property variant channelsInfo: [11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 83]
 
     property var strokeColors: ["rgb(255,   0,   0)",
@@ -54,6 +53,31 @@ Page {
                               "rgba(128,   0, 128, 0.33)",
                               "rgba(255,   0, 255, 0.33)",
                               "rgba(128,   0,   0, 0.33)"]
+
+    /**
+     * The method calculates the WiFi-network channel.
+     * @param frequency - the frecuency of current WiFi-network
+     * @return The channel number of current WiFi-network
+     */
+    function calculateChannel(frequency) {
+        switch (frequency) {
+        case 2412: return 0;
+        case 2417: return 1;
+        case 2422: return 2;
+        case 2427: return 3;
+        case 2432: return 4;
+        case 2437: return 5;
+        case 2442: return 6;
+        case 2447: return 7;
+        case 2452: return 8;
+        case 2457: return 9;
+        case 2462: return 10;
+        case 2467: return 11;
+        case 2472: return 12;
+        case 2484: return 13;
+        default: return -1;
+        }
+    }
 
     /**
      * The method calculates coordinates for channels axes.
@@ -259,9 +283,9 @@ Page {
      */
     function drawWifiName(context, wifiInfo, channels, levelPosition) {
         console.log('drawWifiName(' + context + ', ' + wifiInfo + ', ' + channels + ', ' + levelPosition + ')');
-        var textWidth = context.measureText(wifiInfo[2]).width;
-        context.fillText(wifiInfo[2],
-                         channels[wifiInfo[0]] + (2.5 * Theme.paddingLarge) - (textWidth / 2),
+        var textWidth = context.measureText(wifiInfo.name).width;
+        context.fillText(wifiInfo.name,
+                         channels[calculateChannel(wifiInfo.frequency)] + (2.5 * Theme.paddingLarge) - (textWidth / 2),
                          levelPosition + Theme.paddingLarge);
     }
 
@@ -273,14 +297,14 @@ Page {
     function drawWifiFigures(context, width, height, channels) {
         console.log('drawWifiFigures(' + context + ', ' + width + ', ' + height + ', ' + channels + ')');
         context.lineWidth = 2;
-        for (var networkIndex in mWifiInfo) {
-            var levelPosition = calculateCurrentSignalLevelPosition(height, mWifiInfo[networkIndex][1])
-            var bounds = calculateBoundsPositionForChannel(width, mWifiInfo[networkIndex][0])
+        for (var networkIndex = 0; networkIndex < networksList.count; ++networkIndex) {
+            var levelPosition = calculateCurrentSignalLevelPosition(height, (networksList.get(networkIndex).strength - 100))
+            var bounds = calculateBoundsPositionForChannel(width, calculateChannel(networksList.get(networkIndex).frequency))
             context.strokeStyle = strokeColors[networkIndex % strokeColors.length];
             context.fillStyle = fillColors[networkIndex % fillColors.length];
-            drawWifiFigure(context, channels[mWifiInfo[networkIndex][0]], levelPosition, bounds);
+            drawWifiFigure(context, channels[calculateChannel(networksList.get(networkIndex).frequency)], levelPosition, bounds);
             context.fillStyle = context.strokeStyle;
-            drawWifiName(context, mWifiInfo[networkIndex], channels, levelPosition);
+            drawWifiName(context, networksList.get(networkIndex), channels, levelPosition);
         }
     }
 
@@ -303,7 +327,7 @@ Page {
         var levels = calculateSignalLevelsPositions(height)
         drawAxes(context, channels, levels);
 
-        if (mWifiInfo.length === 0) return;
+        if (networksList.count === 0) return;
         drawWifiFigures(context, width, height, channels);
     }
 
@@ -315,11 +339,6 @@ Page {
             MenuItem {
                 text: qsTr("About")
                 onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-
-            MenuItem {
-                text: qsTr("Set password")
-                onClicked: pageContainer.push(Qt.resolvedUrl("PasswordPage.qml"))
             }
         }
 
@@ -341,20 +360,8 @@ Page {
     }
 
     Connections {
-        target: wpaCliHelper
-        onCalledWpaCli: wifiInfoParser.parseInfo(wpaCliHelper.getWifiInfo())
-        onGotAuthError: console.log("onGotAuthError")
-        onGotResultError: console.log("onGotResultError")
-        onGotScanError: console.log("onGotScanError")
-    }
-
-    Connections {
-        target: wifiInfoParser
-        onParsed: {
-            mWifiInfo = [];
-            if (exitCode === 0) mWifiInfo = wifiInfoParser.getWifiInfo();
-            graph.requestPaint();
-        }
+        target: networksList
+        onScanRequestFinished: graph.requestPaint()
     }
 
     onOrientationChanged: graph.requestPaint()

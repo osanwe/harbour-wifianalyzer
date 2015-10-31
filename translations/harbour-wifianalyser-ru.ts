@@ -61,17 +61,12 @@
 <context>
     <name>GraphPage</name>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="316"/>
+        <location filename="../qml/pages/GraphPage.qml" line="340"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="321"/>
-        <source>Set password</source>
-        <translation>Указать пароль</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/GraphPage.qml" line="329"/>
+        <location filename="../qml/pages/GraphPage.qml" line="348"/>
         <source>List view</source>
         <translation type="unfinished"></translation>
     </message>
@@ -79,12 +74,12 @@
 <context>
     <name>ListPage</name>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="58"/>
+        <location filename="../qml/pages/ListPage.qml" line="63"/>
         <source>About</source>
         <translation type="unfinished">О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="66"/>
+        <location filename="../qml/pages/ListPage.qml" line="71"/>
         <source>Graph view</source>
         <translation type="unfinished"></translation>
     </message>

@@ -50,10 +50,6 @@
 <context>
     <name>GraphPage</name>
     <message>
-        <source>Set password</source>
-        <translation>Ange lösenord</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Om</translation>
     </message>
