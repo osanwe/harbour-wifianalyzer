@@ -71,20 +71,21 @@ Page {
                     anchors.left: parent.left
 
                     Label {
-                        width: parent.width / 3
+                        width: parent.width / 2
                         horizontalAlignment: Text.AlignLeft
                         font.bold: true
                         text: modelData.name
+                        truncationMode: TruncationMode.Fade
                     }
 
                     Label {
-                        width: parent.width / 3
+                        width: parent.width / 4
                         horizontalAlignment: Text.AlignRight
                         text: (calculateChannel(modelData.frequency) + 1) + " ch."
                     }
 
                     Label {
-                        width: parent.width / 3
+                        width: parent.width / 4
                         horizontalAlignment: Text.AlignRight
                         text: (modelData.strength - 120) + " dB"
                     }
