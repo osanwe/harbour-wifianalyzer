@@ -72,32 +72,5 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Set password</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PasswordPage</name>
-    <message>
-        <source>Save</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Type devel-su password:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Your devel-su password</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting. Your devel-su password is required for starting `wpa_cli` util.</source>
-        <translation></translation>
-    </message>
 </context>
 </TS>

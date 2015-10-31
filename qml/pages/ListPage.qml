@@ -27,19 +27,23 @@ Page {
 
     allowedOrientations: Orientation.All
 
-    /**
-     * The method forms the list view with WiFi-networks info.
-     * @param networks - the array with WiFi-networks info
-     */
-    function formWifiInfoList(networks) {
-        console.log('formWifiInfoList(' + networks + ')');
-        wifiInfoList.model.clear();
-        for (var index in networks) {
-            var wifiInfo = { channel: parseInt(networks[index][0]) + 1,
-                             level:   networks[index][1],
-                             name:    networks[index][2],
-                             bssid:   networks[index][3] };
-            wifiInfoList.model.append(wifiInfo);
+    function calculateChannel(frequency) {
+        switch (frequency) {
+        case 2412: return 0;
+        case 2417: return 1;
+        case 2422: return 2;
+        case 2427: return 3;
+        case 2432: return 4;
+        case 2437: return 5;
+        case 2442: return 6;
+        case 2447: return 7;
+        case 2452: return 8;
+        case 2457: return 9;
+        case 2462: return 10;
+        case 2467: return 11;
+        case 2472: return 12;
+        case 2484: return 13;
+        default: return -1;
         }
     }
 
@@ -54,11 +58,6 @@ Page {
                 text: qsTr("About")
                 onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
             }
-
-            MenuItem {
-                text: qsTr("Set password")
-                onClicked: pageContainer.push(Qt.resolvedUrl("PasswordPage.qml"))
-            }
         }
 
         PushUpMenu {
@@ -69,7 +68,7 @@ Page {
             }
         }
 
-        model: ListModel {}
+        model: networksList
 
         delegate: Item {
             width: parent.width
@@ -90,48 +89,35 @@ Page {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignLeft
                         font.bold: true
-                        text: name
+                        text: modelData.name
                     }
 
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignRight
-                        text: channel + " ch."
+                        text: (calculateChannel(modelData.frequency) + 1) + " ch."
                     }
 
                     Label {
                         width: parent.width / 3
                         horizontalAlignment: Text.AlignRight
-                        text: level + " dB"
+                        text: (modelData.strength - 100) + " dB"
                     }
                 }
 
                 Label {
                     width: parent.width
                     horizontalAlignment: Text.AlignLeft
-                    text: "bssid: " + bssid
+                    text: "bssid: " + modelData.bssid
                 }
 
                 ProgressBar {
                     width: parent.width
-                    minimumValue: -100
-                    maximumValue: 0
-                    value: level
+                    minimumValue: 0
+                    maximumValue: 100
+                    value: modelData.strength
                 }
             }
         }
-    }
-
-    Connections {
-        target: wpaCliHelper
-        onCalledWpaCli: wifiInfoParser.parseInfo(wpaCliHelper.getWifiInfo())
-        onGotAuthError: console.log("onGotAuthError")
-        onGotResultError: console.log("onGotResultError")
-        onGotScanError: console.log("onGotScanError")
-    }
-
-    Connections {
-        target: wifiInfoParser
-        onParsed: if (exitCode === 0) formWifiInfoList(wifiInfoParser.getWifiInfo())
     }
 }

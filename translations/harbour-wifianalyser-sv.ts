@@ -72,32 +72,5 @@
         <source>About</source>
         <translation>Om</translation>
     </message>
-    <message>
-        <source>Set password</source>
-        <translation>Ange lösenord</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordPage</name>
-    <message>
-        <source>Save</source>
-        <translation>Spara</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
-    </message>
-    <message>
-        <source>Type devel-su password:</source>
-        <translation>Ange devel-su-lösenord:</translation>
-    </message>
-    <message>
-        <source>Your devel-su password</source>
-        <translation>Ditt devel-su-lösenord</translation>
-    </message>
-    <message>
-        <source>Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting. Your devel-su password is required for starting `wpa_cli` util.</source>
-        <translation>Ditt lösenord för &apos;devel-su&apos; sparas endast för denna session. Du måste ange det vid varje app-start. Ditt devel-su-lösenord krävs för att starta verktyget, wpa_cli.</translation>
-    </message>
 </context>
 </TS>

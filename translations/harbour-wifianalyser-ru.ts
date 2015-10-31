@@ -79,47 +79,14 @@
 <context>
     <name>ListPage</name>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="54"/>
+        <location filename="../qml/pages/ListPage.qml" line="58"/>
         <source>About</source>
         <translation type="unfinished">О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ListPage.qml" line="59"/>
-        <source>Set password</source>
-        <translation type="unfinished">Указать пароль</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/ListPage.qml" line="67"/>
+        <location filename="../qml/pages/ListPage.qml" line="66"/>
         <source>Graph view</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PasswordPage</name>
-    <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="34"/>
-        <source>Save</source>
-        <translation>Сохранить</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="35"/>
-        <source>Cancel</source>
-        <translation>Отменить</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="42"/>
-        <source>Your password for devel-su will be saved only for this session. You have to type it after each applicaton starting. Your devel-su password is required for starting `wpa_cli` util.</source>
-        <translation>Ваш пароль devel-su будет сохранен только на текущую сессию. Вы должны его вводить после каждого запуска программы. Пароль devel-su требуется для запуска утилиты `wpa_cli`.</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="54"/>
-        <source>Type devel-su password:</source>
-        <translation>Введите пароль devel-su:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PasswordPage.qml" line="55"/>
-        <source>Your devel-su password</source>
-        <translation>Ваш пароль devel-su</translation>
     </message>
 </context>
 </TS>

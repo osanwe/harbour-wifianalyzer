@@ -19,6 +19,7 @@
   along with WiFi Analyzer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import MeeGo.Connman 0.2
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
@@ -40,10 +41,11 @@ ApplicationWindow {
         repeat: true
         triggeredOnStart: true
 
-        onTriggered: {
-            if (password.length > 0 && password !== oldPassword) wpaCliHelper.callWpaCli(password);
-        }
+        onTriggered: networksList.requestScan()
     }
 
-    Component.onCompleted: pageStack.push(Qt.resolvedUrl("pages/PasswordPage.qml"))
+    TechnologyModel {
+        id: networksList
+        name: "wifi"
+    }
 }

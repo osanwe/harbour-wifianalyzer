@@ -14,9 +14,7 @@ TARGET = harbour-wifianalyser
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-wifianalyser.cpp \
-    src/wpaclihelper.cpp \
-    src/wifiinfoparser.cpp
+SOURCES += src/harbour-wifianalyser.cpp
 
 OTHER_FILES += qml/harbour-wifianalyser.qml \
     qml/cover/CoverPage.qml \
@@ -26,7 +24,6 @@ OTHER_FILES += qml/harbour-wifianalyser.qml \
     translations/*.ts \
     harbour-wifianalyser.desktop \
     qml/pages/GraphPage.qml \
-    qml/pages/PasswordPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/ListPage.qml
 
@@ -42,7 +39,5 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-wifianalyser-ru.ts \
     translations/harbour-wifianalyser-sv.ts
 
-HEADERS += \
-    src/wpaclihelper.h \
-    src/wifiinfoparser.h
+HEADERS +=
 
