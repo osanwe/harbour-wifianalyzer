@@ -53,9 +53,6 @@ ApplicationWindow {
         }
     }
 
-    property string password: ""
-    property string oldPassword: ""
-
     initialPage: Component { GraphPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
