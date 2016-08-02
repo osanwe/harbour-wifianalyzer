@@ -322,14 +322,6 @@ Page {
             }
         }
 
-        PushUpMenu {
-
-            MenuItem {
-                text: qsTr("List view")
-                onClicked: pageContainer.replace(Qt.resolvedUrl("ListPage.qml"))
-            }
-        }
-
         Canvas {
             id: graph
             anchors.fill: parent
@@ -345,4 +337,6 @@ Page {
     }
 
     onOrientationChanged: graph.requestPaint()
+
+    onStatusChanged: if (status === PageStatus.Active) pageStack.pushAttached(Qt.resolvedUrl("ListPage.qml"))
 }

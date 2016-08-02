@@ -45,14 +45,6 @@ Page {
             }
         }
 
-        PushUpMenu {
-
-            MenuItem {
-                text: qsTr("Graph view")
-                onClicked: pageContainer.replace(Qt.resolvedUrl("GraphPage.qml"))
-            }
-        }
-
         model: networksList
 
         delegate: Item {
