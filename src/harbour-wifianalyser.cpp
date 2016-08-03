@@ -23,20 +23,24 @@
 #include <QtQuick>
 #endif
 
+#include <QScopedPointer>
+
 #include <sailfishapp.h>
+
+#include "settingswrapper.h"
 
 
 int main(int argc, char *argv[])
 {
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
+    QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
 
-    return SailfishApp::main(argc, argv);
+    QScopedPointer<SettingsWrapper> settings(new SettingsWrapper(view.data()));
+    view->rootContext()->setContextProperty("settings", settings.data());
+
+    view->setSource(SailfishApp::pathTo("qml/harbour-wifianalyser.qml"));
+    view->show();
+
+    return application->exec();
 }
 

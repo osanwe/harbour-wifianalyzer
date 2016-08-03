@@ -14,7 +14,8 @@ TARGET = harbour-wifianalyser
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-wifianalyser.cpp
+SOURCES += src/harbour-wifianalyser.cpp \
+    src/settingswrapper.cpp
 
 OTHER_FILES += qml/harbour-wifianalyser.qml \
     qml/cover/CoverPage.qml \
@@ -41,4 +42,7 @@ TRANSLATIONS += translations/harbour-wifianalyser-ru.ts \
     translations/harbour-wifianalyser-sv.ts \
     translations/harbour-wifianalyser-cs_CZ.ts \
     translations/harbour-wifianalyser-fr.ts
+
+HEADERS += \
+    src/settingswrapper.h
 

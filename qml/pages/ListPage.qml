@@ -43,6 +43,11 @@ Page {
                 text: qsTr("About")
                 onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
             }
+
+            MenuItem {
+                text: qsTr("Set as default")
+                onClicked: settings.setValue("defaultPage", "ListPage.qml")
+            }
         }
 
         model: networksList
@@ -108,5 +113,11 @@ Page {
                 }
             }
         }
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active && pageContainer.depth === 1 &&
+                settings.value("defaultPage") === "ListPage.qml")
+            pageContainer.pushAttached(Qt.resolvedUrl("GraphPage.qml"))
     }
 }

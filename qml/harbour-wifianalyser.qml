@@ -53,7 +53,9 @@ ApplicationWindow {
         }
     }
 
-    initialPage: Component { GraphPage { } }
+    initialPage: settings.value("defaultPage") ?
+                     Qt.createComponent(Qt.resolvedUrl("pages/" + settings.value("defaultPage"))) :
+                     Qt.createComponent(Qt.resolvedUrl("pages/GraphPage.qml"))
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     Timer {

@@ -320,6 +320,11 @@ Page {
                 text: qsTr("About")
                 onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
             }
+
+            MenuItem {
+                text: qsTr("Set as default")
+                onClicked: settings.setValue("defaultPage", "GraphPage.qml")
+            }
         }
 
         Canvas {
@@ -338,5 +343,9 @@ Page {
 
     onOrientationChanged: graph.requestPaint()
 
-    onStatusChanged: if (status === PageStatus.Active) pageStack.pushAttached(Qt.resolvedUrl("ListPage.qml"))
+    onStatusChanged: {
+        if (status === PageStatus.Active && pageContainer.depth === 1 &&
+                (!settings.value("defaultPage") || settings.value("defaultPage") === "GraphPage.qml"))
+            pageContainer.pushAttached(Qt.resolvedUrl("ListPage.qml"))
+    }
 }
