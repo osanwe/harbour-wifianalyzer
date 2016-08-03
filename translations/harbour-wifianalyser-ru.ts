@@ -57,7 +57,7 @@
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="311"/>
         <source>Please, turn WiFi on</source>
-        <translation type="unfinished">Пожалуйста, включите WiFi</translation>
+        <translation>Пожалуйста, включите WiFi</translation>
     </message>
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="320"/>
@@ -67,7 +67,7 @@
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="328"/>
         <source>List view</source>
-        <translation type="unfinished"></translation>
+        <translation>Список</translation>
     </message>
 </context>
 <context>
@@ -75,17 +75,17 @@
     <message>
         <location filename="../qml/pages/ListPage.qml" line="32"/>
         <source>Please, turn WiFi on</source>
-        <translation type="unfinished">Пожалуйста, включите WiFi</translation>
+        <translation>Пожалуйста, включите WiFi</translation>
     </message>
     <message>
         <location filename="../qml/pages/ListPage.qml" line="43"/>
         <source>About</source>
-        <translation type="unfinished">О программе</translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <location filename="../qml/pages/ListPage.qml" line="51"/>
         <source>Graph view</source>
-        <translation type="unfinished"></translation>
+        <translation>График</translation>
     </message>
 </context>
 </TS>
