@@ -16,8 +16,7 @@ CONFIG += sailfishapp
 
 SOURCES += src/harbour-wifianalyser.cpp
 
-OTHER_FILES += \
-    qml/harbour-wifianalyser.qml \
+OTHER_FILES += qml/harbour-wifianalyser.qml \
     qml/cover/CoverPage.qml \
     rpm/harbour-wifianalyser.changes.in \
     rpm/harbour-wifianalyser.spec \
@@ -28,6 +27,8 @@ OTHER_FILES += \
     qml/pages/AboutPage.qml \
     qml/pages/ListPage.qml
 
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
+
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
@@ -36,12 +37,8 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-#TRANSLATIONS += translations/harbour-wifianalyser-de.ts
-TRANSLATIONS += \
-    translations/harbour-wifianalyser-ru.ts \
+TRANSLATIONS += translations/harbour-wifianalyser-ru.ts \
     translations/harbour-wifianalyser-sv.ts \
     translations/harbour-wifianalyser-cs_CZ.ts \
     translations/harbour-wifianalyser-fr.ts
-
-HEADERS +=
 

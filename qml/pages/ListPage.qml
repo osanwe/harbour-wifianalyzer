@@ -19,7 +19,7 @@
   along with WiFi Analyzer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 
 Page {
@@ -61,6 +61,7 @@ Page {
                 Row {
                     anchors.right: parent.right
                     anchors.left: parent.left
+                    height: childrenRect.height
 
                     Label {
                         width: parent.width / 2
@@ -83,10 +84,20 @@ Page {
                     }
                 }
 
-                Label {
-                    width: parent.width
-                    horizontalAlignment: Text.AlignLeft
-                    text: "bssid: " + modelData.bssid
+                Row {
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    height: childrenRect.height
+
+                    Label {
+                        anchors.left: parent.left
+                        text: "bssid: " + modelData.bssid
+                    }
+
+                    Label {
+                        anchors.right: parent.right
+                        text: modelData.security.join("/")
+                    }
                 }
 
                 ProgressBar {
