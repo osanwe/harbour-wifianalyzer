@@ -33,7 +33,11 @@ PullDownMenu {
 
     MenuItem {
         text: qsTr("Set as default")
-        onClicked: settings.setValue("defaultPage", pageName)
+        onClicked: {
+            settings.setValue("defaultPage", pageName)
+            pageStack.replaceAbove(
+                        null, Qt.resolvedUrl("../pages/" + pageName), {}, PageStackAction.Immediate)
+        }
     }
 }
 
