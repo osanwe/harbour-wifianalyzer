@@ -45,16 +45,19 @@ Page {
 
         model: networksList
 
-        delegate: Item {
+        delegate: BackgroundItem {
             width: parent.width
             height: Theme.itemSizeHuge
+            highlighted: true
 
             Column {
-                anchors.fill: parent
-                anchors.topMargin: Theme.paddingLarge
-                anchors.bottomMargin: Theme.paddingLarge
-                anchors.rightMargin: Theme.paddingLarge
-                anchors.leftMargin: Theme.paddingLarge
+                anchors {
+                    fill: parent
+                    leftMargin: Theme.horizontalPageMargin
+                    rightMargin: Theme.horizontalPageMargin
+                    topMargin: Theme.paddingLarge
+                    verticalCenter: parent.verticalCenter
+                }
 
                 Row {
                     anchors.right: parent.right
@@ -78,7 +81,7 @@ Page {
                     Label {
                         width: parent.width / 4
                         horizontalAlignment: Text.AlignRight
-                        text: (modelData.strength - 120) + " dB"
+                        text: (modelData.strength - 120) + " dBm"
                     }
                 }
 
@@ -106,6 +109,8 @@ Page {
                 }
             }
         }
+
+        VerticalScrollDecorator {}
     }
 
     onStatusChanged: {

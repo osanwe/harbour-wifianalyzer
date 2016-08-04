@@ -167,7 +167,7 @@ Page {
         var textWidth = context.measureText(wifiInfo.name).width;
         context.fillText(wifiInfo.name,
                          channels[calculateChannel(wifiInfo.frequency)] - (textWidth / 2),
-                         levelPosition - Theme.paddingLarge - Theme.paddingSmall);
+                         levelPosition - Theme.paddingSmall);
     }
 
     function drawWifiFigures(context, width, height, channels) {
