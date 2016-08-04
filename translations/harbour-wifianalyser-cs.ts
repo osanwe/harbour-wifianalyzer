@@ -60,7 +60,7 @@
 <context>
     <name>GraphPage</name>
     <message>
-        <location filename="../qml/pages/GraphPage.qml" line="313"/>
+        <location filename="../qml/pages/GraphPage.qml" line="248"/>
         <source>Please, turn WiFi on</source>
         <translation>Prosím, zapněte WiFi</translation>
     </message>
