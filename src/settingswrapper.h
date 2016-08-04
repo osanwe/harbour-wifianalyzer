@@ -8,6 +8,7 @@
 class SettingsWrapper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit SettingsWrapper(QObject *parent = 0);
     ~SettingsWrapper();

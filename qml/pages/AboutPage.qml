@@ -27,15 +27,15 @@ Page {
 
     property var model: [
         { aboutItemText: qsTr("The simple tool for WiFi networks analyzing distributed under the terms of the GNU GPLv3.") },
-        { aboutItemText: qsTr("This app uses icons by <a href=\"http://www.flaticon.com/authors/rami-mcmin\">Rami McMin</a> and <a href=\"http://www.flaticon.com/authors/freepik\">Freepik</a>.") },
+        { aboutItemText: qsTr("This app uses icons by") + " <a href=\"http://www.flaticon.com/authors/rami-mcmin\">Rami McMin</a> " + qsTr("and") + " <a href=\"http://www.flaticon.com/authors/freepik\">Freepik</a>." },
         { aboutItemText: qsTr("You can connect with an author, improve the app or donate:") },
-        { aboutItemText: qsTr("<a href=\"https://github.com/osanwe/harbour-wifianalyzer\">GitHub</a>") },
-        { aboutItemText: qsTr("<a href=\"https://twitter.com/Osanwe\">Ósanwe</a>") },
-        { aboutItemText: qsTr("<a href=\"https://flattr.com/submit/auto?user_id=osanwe&url=https://github.com/osanwe/harbour-wifianalyzer&title=WiFi%20Analyzer\">Flattr</a>") },
-        { aboutItemText: qsTr("<br>Localization") },
-        { aboutItemText: qsTr("Swedish: <a href=\"https://github.com/eson57\">Åke Engelbrektson</a>") },
-        { aboutItemText: qsTr("Czech: <a href=\"https://github.com/RikudouSage\">Rikudou Sennin</a>") },
-        { aboutItemText: qsTr("French: <a href=\"https://github.com/Quent-in\">Rasher</a>") }
+        { aboutItemText: "<a href=\"https://github.com/osanwe/harbour-wifianalyzer\">GitHub</a>" },
+        { aboutItemText: "<a href=\"https://twitter.com/Osanwe\">Ósanwe</a>" },
+        { aboutItemText: "<a href=\"https://flattr.com/submit/auto?user_id=osanwe&url=https://github.com/osanwe/harbour-wifianalyzer&title=WiFi%20Analyzer\">Flattr</a>" },
+        { aboutItemText: "<br>" + qsTr("Localization") },
+        { aboutItemText: qsTr("Swedish") + ": <a href=\"https://github.com/eson57\">Åke Engelbrektson</a>" },
+        { aboutItemText: qsTr("Czech") + ": <a href=\"https://github.com/RikudouSage\">Rikudou Sennin</a>" },
+        { aboutItemText: qsTr("French") + ": <a href=\"https://github.com/Quent-in\">Rasher</a>" }
     ]
 
     SilicaListView {
@@ -44,7 +44,7 @@ Page {
         model: aboutPage.model
 
         header: PageHeader {
-            title: qsTr("WiFi Analyzer v2.0.0")
+            title: "WiFi Analyser v2.0.0"
         }
 
         delegate: Item {

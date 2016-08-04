@@ -10,52 +10,37 @@
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="30"/>
-        <source>This app uses icons by &lt;a href=&quot;http://www.flaticon.com/authors/rami-mcmin&quot;&gt;Rami McMin&lt;/a&gt; and &lt;a href=&quot;http://www.flaticon.com/authors/freepik&quot;&gt;Freepik&lt;/a&gt;.</source>
+        <source>This app uses icons by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="30"/>
+        <source>and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="35"/>
+        <source>Localization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="36"/>
+        <source>Swedish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="37"/>
+        <source>Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="38"/>
+        <source>French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
         <source>You can connect with an author, improve the app or donate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="32"/>
-        <source>&lt;a href=&quot;https://github.com/osanwe/harbour-wifianalyzer&quot;&gt;GitHub&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="33"/>
-        <source>&lt;a href=&quot;https://twitter.com/Osanwe&quot;&gt;Ósanwe&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="34"/>
-        <source>&lt;a href=&quot;https://flattr.com/submit/auto?user_id=osanwe&amp;url=https://github.com/osanwe/harbour-wifianalyzer&amp;title=WiFi%20Analyzer&quot;&gt;Flattr&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="35"/>
-        <source>&lt;br&gt;Localization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="36"/>
-        <source>Swedish: &lt;a href=&quot;https://github.com/eson57&quot;&gt;Åke Engelbrektson&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="37"/>
-        <source>Czech: &lt;a href=&quot;https://github.com/RikudouSage&quot;&gt;Rikudou Sennin&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="38"/>
-        <source>French: &lt;a href=&quot;https://github.com/Quent-in&quot;&gt;Rasher&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="47"/>
-        <source>WiFi Analyzer v2.0.0</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

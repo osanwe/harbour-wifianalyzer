@@ -17,7 +17,8 @@ CONFIG += sailfishapp
 HEADERS += \
     src/settingswrapper.h
 
-SOURCES += src/harbour-wifianalyser.cpp \
+SOURCES += \
+    src/harbour-wifianalyser.cpp \
     src/settingswrapper.cpp
 
 OTHER_FILES += qml/harbour-wifianalyser.qml \
