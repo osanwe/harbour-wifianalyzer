@@ -14,6 +14,9 @@ TARGET = harbour-wifianalyser
 
 CONFIG += sailfishapp
 
+HEADERS += \
+    src/settingswrapper.h
+
 SOURCES += src/harbour-wifianalyser.cpp \
     src/settingswrapper.cpp
 
@@ -40,9 +43,9 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-wifianalyser-ru.ts \
     translations/harbour-wifianalyser-sv.ts \
-    translations/harbour-wifianalyser-cs_CZ.ts \
+    translations/harbour-wifianalyser-cs.ts \
     translations/harbour-wifianalyser-fr.ts
 
-HEADERS += \
-    src/settingswrapper.h
+DISTFILES += \
+    qml/views/TopMenu.qml
 

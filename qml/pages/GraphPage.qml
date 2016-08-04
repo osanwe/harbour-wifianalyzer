@@ -22,6 +22,8 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 
+import "../views"
+
 Page {
     id: graphPage
 
@@ -314,17 +316,8 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
 
-        PullDownMenu {
-
-            MenuItem {
-                text: qsTr("About")
-                onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-
-            MenuItem {
-                text: qsTr("Set as default")
-                onClicked: settings.setValue("defaultPage", "GraphPage.qml")
-            }
+        TopMenu {
+            pageName: "GraphPage.qml"
         }
 
         Canvas {

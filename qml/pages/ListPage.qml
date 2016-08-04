@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2015 Petr Vytovtov
+  Copyright (C) 2016 Petr Vytovtov
   Contact: Petr Vytovtov <osanwe@protonmail.ch>
   All rights reserved.
 
@@ -22,6 +22,8 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 
+import "../views"
+
 Page {
     id: graphPage
 
@@ -37,17 +39,8 @@ Page {
 
         anchors.fill: parent
 
-        PullDownMenu {
-
-            MenuItem {
-                text: qsTr("About")
-                onClicked: pageContainer.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-
-            MenuItem {
-                text: qsTr("Set as default")
-                onClicked: settings.setValue("defaultPage", "ListPage.qml")
-            }
+        TopMenu {
+            pageName: "ListPage.qml"
         }
 
         model: networksList
@@ -89,7 +82,7 @@ Page {
                     }
                 }
 
-                Row {
+                Item {
                     anchors.right: parent.right
                     anchors.left: parent.left
                     height: childrenRect.height
