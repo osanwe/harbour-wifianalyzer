@@ -11,12 +11,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="30"/>
         <source>This app uses icons by</source>
-        <translation>Aplikace využívá ikony od:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="30"/>
-        <source>and</source>
-        <translation>a</translation>
+        <translation>Aplikace využívá ikony od</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="35"/>

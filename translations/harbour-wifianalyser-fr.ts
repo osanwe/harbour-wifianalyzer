@@ -14,11 +14,6 @@
         <translation>Les icônes utilisées par l&apos;application sont de</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="30"/>
-        <source>and</source>
-        <translation>et</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/AboutPage.qml" line="35"/>
         <source>Localization</source>
         <translation>Localisation</translation>

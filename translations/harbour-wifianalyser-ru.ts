@@ -14,11 +14,6 @@
         <translation>В этом приложении используется графика от</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="30"/>
-        <source>and</source>
-        <translation>и</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/AboutPage.qml" line="35"/>
         <source>Localization</source>
         <translation>Локализация</translation>

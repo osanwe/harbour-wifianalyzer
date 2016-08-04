@@ -45,10 +45,9 @@ Page {
 
         model: networksList
 
-        delegate: BackgroundItem {
+        delegate: Item {
             width: parent.width
             height: Theme.itemSizeHuge
-            highlighted: true
 
             Column {
                 anchors {

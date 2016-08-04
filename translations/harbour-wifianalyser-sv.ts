@@ -14,11 +14,6 @@
         <translation>Denna app använder ikoner av</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="30"/>
-        <source>and</source>
-        <translation>och</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/AboutPage.qml" line="35"/>
         <source>Localization</source>
         <translation>Localization</translation>

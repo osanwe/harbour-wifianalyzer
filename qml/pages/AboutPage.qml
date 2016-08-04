@@ -27,7 +27,7 @@ Page {
 
     property var model: [
         { aboutItemText: qsTr("The simple tool for WiFi networks analyzing distributed under the terms of the GNU GPLv3.") },
-        { aboutItemText: qsTr("This app uses icons by") + " <a href=\"http://www.flaticon.com/authors/rami-mcmin\">Rami McMin</a> " + qsTr("and") + " <a href=\"http://www.flaticon.com/authors/freepik\">Freepik</a>." },
+        { aboutItemText: qsTr("This app uses icons by") + " <a href=\"http://www.flaticon.com/authors/rami-mcmin\">Rami McMin</a>." },
         { aboutItemText: qsTr("You can connect with an author, improve the app or donate:") },
         { aboutItemText: "<a href=\"https://github.com/osanwe/harbour-wifianalyzer\">GitHub</a>" },
         { aboutItemText: "<a href=\"https://twitter.com/Osanwe\">Ósanwe</a>" },
@@ -44,7 +44,7 @@ Page {
         model: aboutPage.model
 
         header: PageHeader {
-            title: "WiFi Analyser v2.0.0"
+            title: "WiFi Analyser v2.1.0"
         }
 
         delegate: Item {
