@@ -2,7 +2,8 @@
 
 SettingsWrapper::SettingsWrapper(QObject *parent) : QObject(parent)
 {
-    _settings = new QSettings("harbour-wifianalyser.conf", QSettings::NativeFormat);
+    _settings = new QSettings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) +
+                              "/harbour-wifianalyser/harbour-wifianalyser.conf", QSettings::NativeFormat);
 }
 
 SettingsWrapper::~SettingsWrapper() {

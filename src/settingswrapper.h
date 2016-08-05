@@ -3,7 +3,10 @@
 
 #include <QObject>
 #include <QSettings>
+#include <QStandardPaths>
 #include <QString>
+
+#include <QDebug>
 
 class SettingsWrapper : public QObject
 {
