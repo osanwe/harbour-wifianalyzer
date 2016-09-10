@@ -204,6 +204,11 @@ Page {
         text: qsTr("Please, turn WiFi on")
     }
 
+    ViewPlaceholder {
+        enabled: networksList.powered && networksList.count === 0
+        text: qsTr("There are no WiFi networks")
+    }
+
     SilicaFlickable {
         anchors.fill: parent
 

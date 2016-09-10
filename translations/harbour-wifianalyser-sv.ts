@@ -21,7 +21,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="36"/>
         <source>Swedish</source>
-        <translation>Svensk</translation>
+        <translation>Svenska</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="37"/>
@@ -32,6 +32,16 @@
         <location filename="../qml/pages/AboutPage.qml" line="38"/>
         <source>French</source>
         <translation>Franska</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="39"/>
+        <source>Finnish</source>
+        <translation>Finska</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="40"/>
+        <source>Polish</source>
+        <translation>Polska</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
@@ -59,6 +69,11 @@
         <source>Please, turn WiFi on</source>
         <translation>Du måste aktivera WiFi</translation>
     </message>
+    <message>
+        <location filename="../qml/pages/GraphPage.qml" line="209"/>
+        <source>There are no WiFi networks</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -66,6 +81,11 @@
         <location filename="../qml/pages/ListPage.qml" line="34"/>
         <source>Please, turn WiFi on</source>
         <translation>Du måste aktivera WiFi</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ListPage.qml" line="39"/>
+        <source>There are no WiFi networks</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

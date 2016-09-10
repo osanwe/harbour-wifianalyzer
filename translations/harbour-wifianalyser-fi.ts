@@ -39,6 +39,11 @@
         <translation>Suomi</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="40"/>
+        <source>Polish</source>
+        <translation>Puolan</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
         <source>You can connect with an author, improve the app or donate:</source>
         <translation>Voit olla yhteydessä sovelluksen tekijään, parantaa sovellusta tai lahjoittaa:</translation>
@@ -64,6 +69,11 @@
         <source>Please, turn WiFi on</source>
         <translation>Ole hyvä ja ota WiFi käyttöön</translation>
     </message>
+    <message>
+        <location filename="../qml/pages/GraphPage.qml" line="209"/>
+        <source>There are no WiFi networks</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -71,6 +81,11 @@
         <location filename="../qml/pages/ListPage.qml" line="34"/>
         <source>Please, turn WiFi on</source>
         <translation>Ole hyvä ja ota WiFi käyttöön</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ListPage.qml" line="39"/>
+        <source>There are no WiFi networks</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
