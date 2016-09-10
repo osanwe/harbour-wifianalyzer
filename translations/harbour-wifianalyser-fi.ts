@@ -49,7 +49,7 @@
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="40"/>
         <source>WiFi networks</source>
-        <translation>WiFi-verkot</translation>
+        <translation>WiFi-verkkoa</translation>
     </message>
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="53"/>
@@ -78,7 +78,7 @@
     <message>
         <location filename="../qml/views/TopMenu.qml" line="30"/>
         <source>About</source>
-        <translation>Tietoa</translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <location filename="../qml/views/TopMenu.qml" line="35"/>
