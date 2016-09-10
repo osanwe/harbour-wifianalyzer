@@ -35,7 +35,9 @@ Page {
         { aboutItemText: "<br>" + qsTr("Localization") },
         { aboutItemText: qsTr("Swedish") + ": <a href=\"https://github.com/eson57\">Åke Engelbrektson</a>" },
         { aboutItemText: qsTr("Czech") + ": <a href=\"https://github.com/RikudouSage\">Rikudou Sennin</a>" },
-        { aboutItemText: qsTr("French") + ": <a href=\"https://github.com/Quent-in\">Rasher</a>" }
+        { aboutItemText: qsTr("French") + ": <a href=\"https://github.com/Quent-in\">Rasher</a>" },
+        { aboutItemText: qsTr("Finnish") + ": <a href=\"https://github.com/Gehock\">Sami Laine</a>" },
+        { aboutItemText: qsTr("Polish") + ": <a href=\"https://github.com/mp107\">mp107</a>" }
     ]
 
     SilicaListView {

@@ -34,6 +34,16 @@
         <translation>Francouzština</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="39"/>
+        <source>Finnish</source>
+        <translation>Finština</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="40"/>
+        <source>Polish</source>
+        <translation>Polština</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
         <source>You can connect with an author, improve the app or donate:</source>
         <translation>Můžete se spojit s autorem, vylepšit aplikaci, nebo nás obdarovat:</translation>

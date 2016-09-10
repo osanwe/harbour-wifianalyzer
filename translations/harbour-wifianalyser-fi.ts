@@ -39,6 +39,11 @@
         <translation>Suomi</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="40"/>
+        <source>Polish</source>
+        <translation>Puolan</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
         <source>You can connect with an author, improve the app or donate:</source>
         <translation>Voit olla yhteydessä sovelluksen tekijään, parantaa sovellusta tai lahjoittaa:</translation>

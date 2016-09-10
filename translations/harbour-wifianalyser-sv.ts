@@ -21,7 +21,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="36"/>
         <source>Swedish</source>
-        <translation>Svensk</translation>
+        <translation>Svenska</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="37"/>
@@ -32,6 +32,16 @@
         <location filename="../qml/pages/AboutPage.qml" line="38"/>
         <source>French</source>
         <translation>Franska</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="39"/>
+        <source>Finnish</source>
+        <translation>Finska</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="40"/>
+        <source>Polish</source>
+        <translation>Polska</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
