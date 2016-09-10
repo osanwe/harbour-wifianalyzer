@@ -46,7 +46,7 @@ Page {
         model: aboutPage.model
 
         header: PageHeader {
-            title: "WiFi Analyser v2.1.1"
+            title: "WiFi Analyser v2.1.2"
         }
 
         delegate: Item {
