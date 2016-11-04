@@ -16,7 +16,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="35"/>
         <source>Localization</source>
-        <translation>Lokalisointi</translation>
+        <translation>Käännökset</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="36"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="40"/>
         <source>Polish</source>
-        <translation>Puolan</translation>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="31"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="40"/>
         <source>WiFi networks</source>
-        <translation>WiFi-verkot</translation>
+        <translation>WiFi-verkkoa</translation>
     </message>
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="53"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="209"/>
         <source>There are no WiFi networks</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei WiFi-verkkoja</translation>
     </message>
 </context>
 <context>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../qml/pages/ListPage.qml" line="39"/>
         <source>There are no WiFi networks</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei WiFi-verkkoja</translation>
     </message>
 </context>
 <context>
@@ -93,7 +93,7 @@
     <message>
         <location filename="../qml/views/TopMenu.qml" line="30"/>
         <source>About</source>
-        <translation>Tietoa</translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <location filename="../qml/views/TopMenu.qml" line="35"/>
