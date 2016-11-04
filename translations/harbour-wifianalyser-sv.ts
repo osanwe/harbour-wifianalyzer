@@ -26,7 +26,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="37"/>
         <source>Czech</source>
-        <translation>Tjeck</translation>
+        <translation>Tjeckiska</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="38"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="209"/>
         <source>There are no WiFi networks</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns inga WiFi-nät</translation>
     </message>
 </context>
 <context>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../qml/pages/ListPage.qml" line="39"/>
         <source>There are no WiFi networks</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns inga WiFi-nät</translation>
     </message>
 </context>
 <context>
