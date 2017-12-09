@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="29"/>
         <source>The simple tool for WiFi networks analyzing distributed under the terms of the GNU GPLv3.</source>
-        <translation>Outil simple d&apos;utilisation pour analyser les réseaux Wifi distribué sous licence GNU GPLv3</translation>
+        <translation>Outil simple d&apos;utilisation pour analyser les réseaux Wifi distribué sous les termes de licence GNU GPLv3</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="30"/>
