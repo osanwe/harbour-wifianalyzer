@@ -60,7 +60,6 @@ Page {
                     leftMargin: Theme.horizontalPageMargin
                     rightMargin: Theme.horizontalPageMargin
                     topMargin: Theme.paddingLarge
-                    verticalCenter: parent.verticalCenter
                 }
 
                 Row {
