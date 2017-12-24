@@ -72,7 +72,7 @@
     <message>
         <location filename="../qml/pages/GraphPage.qml" line="209"/>
         <source>There are no WiFi networks</source>
-        <translation>Il n'y a aucun réseau Wifi</translation>
+        <translation>Il n&apos;y a aucun réseau Wifi</translation>
     </message>
 </context>
 <context>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../qml/pages/ListPage.qml" line="39"/>
         <source>There are no WiFi networks</source>
-        <translation>Il n'y a aucun réseau Wifi</translation>
+        <translation>Il n&apos;y a aucun réseau Wifi</translation>
     </message>
 </context>
 <context>
